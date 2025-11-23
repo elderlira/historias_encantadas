@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'initialPage.dart';
+// import 'initialPage.dart';
+import 'redHat.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Histórias Encantadas',
-      home: const InitialPage(),
+      home: const RedHat(),
     );
   }
 }
