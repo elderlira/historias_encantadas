@@ -1,10 +1,13 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
+
+import 'apikey.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -156,7 +159,7 @@ class _RedHatState extends State<RedHat> {
 
   final AudioPlayer _audioPlayer = AudioPlayer();
 
-  static const String groqApiKey = String.fromEnvironment("grok");
+  static const String groqApiKey = grok;
 
   @override
   void initState() {
@@ -222,14 +225,14 @@ class _RedHatState extends State<RedHat> {
     }
 
     final originalText = chapeuzinhoVermelhoStory[_currentPage].text;
-    setState(() => _isLoading = true);
+
+    setState(() {
+      _isSpeaking = true;
+      _isLoading = true;
+    });
 
     try {
-      print('Traduzindo texto para inglês natural...');
-      final englishText = await _translateToEnglish(originalText);
-      print('Texto traduzido: $englishText');
-
-      print('Gerando áudio Grok TTS...');
+      final translatedText = await _translateToEnglish(originalText);
 
       final response = await http.post(
         Uri.parse('https://api.groq.com/openai/v1/audio/speech'),
@@ -239,37 +242,56 @@ class _RedHatState extends State<RedHat> {
         },
         body: jsonEncode({
           'model': 'playai-tts',
-          'input': englishText,
+          'input': translatedText,
           'voice': 'Deedee-PlayAI',
-          'response_format': 'wav',
+          'response_format': 'mp3',
           'speed': 1.0,
         }),
       );
 
-      if (response.statusCode == 200) {
-        final tempDir = await getTemporaryDirectory();
-        final tempFile = File('${tempDir.path}/grok_narration.wav');
-        await tempFile.writeAsBytes(response.bodyBytes);
-
-        setState(() => _isSpeaking = true);
-        await _audioPlayer.play(DeviceFileSource(tempFile.path));
-
-        _audioPlayer.onPlayerStateChanged.listen((state) {
-          if (state == PlayerState.completed) {
-            setState(() => _isSpeaking = false);
-            tempFile.delete();
-          }
-        });
-      } else {
+      if (response.statusCode != 200) {
         throw Exception('Erro API: ${response.statusCode} - ${response.body}');
       }
+
+      final Uint8List bytes = Uint8List.fromList(response.bodyBytes);
+
+      await _playAudio(bytes);
     } catch (e) {
       print('Erro Grok TTS: $e');
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Erro ao narrar: $e')));
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Erro ao narrar: $e')));
+      }
+      setState(() => _isSpeaking = false);
     } finally {
       if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _playAudio(Uint8List bytes) async {
+    try {
+      final tempDir = await getTemporaryDirectory();
+      final filePath = '${tempDir.path}/tts.mp3';
+      final file = File(filePath);
+
+      await file.writeAsBytes(bytes, flush: true);
+
+      await _audioPlayer.stop();
+
+      await _audioPlayer.play(DeviceFileSource(filePath));
+
+      _audioPlayer.onPlayerComplete.listen((_) async {
+        if (mounted) setState(() => _isSpeaking = false);
+        try {
+          if (await file.exists()) await file.delete();
+        } catch (e) {
+          print('Falha ao deletar arquivo temporário: $e');
+        }
+      });
+    } catch (e) {
+      print('Erro ao tocar áudio: $e');
+      if (mounted) setState(() => _isSpeaking = false);
     }
   }
 
