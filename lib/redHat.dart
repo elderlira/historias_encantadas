@@ -1,13 +1,5 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:path_provider/path_provider.dart';
-
-import 'apikey.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,98 +41,111 @@ final List<StoryPage> chapeuzinhoVermelhoStory = [
   StoryPage(
     pageNumber: 1,
     text:
-        'Era uma vez uma menina muito amada por todos, especialmente por sua avó. Ela sempre usava um lindo capuz de veludo vermelho, por isso era chamada de Chapeuzinho Vermelho.',
+        """Era uma vez uma menina muito amada por todos, especialmente por sua avó. 
+        Ela sempre usava um lindo capuz de veludo vermelho que ganhará de sua avó, por isso era chamada de Chapeuzinho Vermelho.""",
     imageDescription:
-        'Chapeuzinho Vermelho, uma menina alegre com um capuz de veludo vermelho, acenando perto de uma casinha aconchegante. O sol está brilhando.',
+        """Chapeuzinho Vermelho, uma menina alegre com um capuz de veludo vermelho, acenando perto de uma casinha aconchegante. 
+        O sol está brilhando.""",
   ),
   StoryPage(
     pageNumber: 2,
     text:
-        'Um dia, sua mãe a chamou: "Chapeuzinho, leve esta cesta com bolo para a Vovó, que está doente. Vá direto e não saia do caminho!"',
+        """"Um dia, sua mãe pediu para levar esta cesta de frutas e bolo para a Vovó, 
+        que está doente e morava do outro lado da floresta. Sua mãe pediu - siga a trilha e nunca falar com estranhos. 
+        Pois um lobo muito mau vivia na floresta.""",
     imageDescription:
-        'A Mãe, com um avental, entrega uma cesta de piquenique trançada para Chapeuzinho Vermelho. Elas estão dentro de uma cozinha rústica e quente.',
+        """A Mãe, com um avental, entrega uma cesta de piquenique trançada para Chapeuzinho Vermelho. 
+        Elas estão dentro de uma cozinha rústica e quente.""",
   ),
   StoryPage(
     pageNumber: 3,
     text:
-        'Chapeuzinho obedeceu e começou a caminhar pela floresta escura. Ela estava animada para ver a Vovó e não notou os perigos escondidos entre as árvores.',
+        """Chapeuzinho ficou muito feliz com a tarefa, pois gostava muito de sua avó e 
+        adorava ouvir as histórias que ela contava, foi em direção a floresta cantando e saltitando pela floresta""",
     imageDescription:
-        'Chapeuzinho Vermelho, carregando a cesta, andando sozinha por um caminho de terra na floresta. As árvores são altas e a luz do sol passa por elas.',
+        """Chapeuzinho Vermelho, carregando a cesta, andando sozinha por um caminho de terra na floresta. 
+        As árvores são altas e a luz do sol passa por elas.""",
   ),
   StoryPage(
     pageNumber: 4,
-    text:
-        'De repente, um Lobo Mau saiu de trás de um arbusto. Ele parecia amigável, mas tinha um olhar astuto. "Aonde vai com tanta pressa, Chapeuzinho?" ele perguntou com uma voz falsa.',
+    text: """
+        De repente, no meio do caminho ela ouviu um ruído vindo da mata fora da trilha, ao olhar viu um logo gigante a observando.
+        O logo perguntou: o que uma menina estava fazendo sozinha na floresta.
+        Chapeuzinho esqueceu o conselho da sua mãe, respondeu ao lobo. Estou indo levar esta cesta de frutas para minha vovó que esta doente.
+        """,
     imageDescription:
-        'O Lobo Mau, com um sorriso astuto e olhos amarelos, conversa com Chapeuzinho Vermelho no caminho da floresta. Chapeuzinho está curiosa, mas inocente.',
+        """O Lobo Mau, com um sorriso astuto e olhos amarelos, conversa com Chapeuzinho Vermelho no caminho da floresta. Chapeuzinho está curiosa, mas inocente.""",
   ),
   StoryPage(
     pageNumber: 5,
-    text:
-        'O Lobo perguntou sobre a Vovó e, depois de saber a direção, ele sugeriu: "Não seria lindo levar um ramalhete de flores para ela? Olhe as flores lindas que há por aqui!".',
+    text: """
+        O lobo já pensando na próxima refeição, perguntou por quê não levar essas formosas flores? 
+        Chapeuzinho gostou da ideia e entrou na floresta para colher flores. 
+        Distraida, nem percebeu que o lobo astuto saiu correndo para a casa da vovó.
+    """,
     imageDescription:
-        'Chapeuzinho Vermelho, com a cesta ao lado, está agachada colhendo uma flor amarela. O Lobo Mau corre rapidamente e sorrateiramente por outro caminho na mata.',
+        """Chapeuzinho Vermelho, com a cesta ao lado, está agachada colhendo uma flor amarela. O Lobo Mau corre rapidamente e sorrateiramente por outro caminho na mata.""",
   ),
   StoryPage(
     pageNumber: 6,
     text:
-        'Enquanto Chapeuzinho colhia flores, o Lobo correu para a casa da Vovó. Ele bateu na porta com cuidado, imitando a voz doce de Chapeuzinho Vermelho.',
+        """Enquanto Chapeuzinho colhia flores, o Lobo correu para a casa da Vovó. Ele bateu na porta com cuidado, imitando a voz doce de Chapeuzinho Vermelho.""",
     imageDescription:
-        'O Lobo Mau, disfarçado, está batendo de leve na porta de madeira da casa da Vovó, que é cercada por um jardim. Ele está tentando parecer pequeno e gentil.',
+        """O Lobo Mau, disfarçado, está batendo de leve na porta de madeira da casa da Vovó, que é cercada por um jardim. Ele está tentando parecer pequeno e gentil.""",
   ),
   StoryPage(
     pageNumber: 7,
     text:
-        'A Vovó, sem desconfiar de nada, abriu a porta. O Lobo, com um pulo rápido, a engoliu de uma só vez! Depois, vestiu a touca da Vovó e deitou-se na cama para esperar.',
+        """A Vovó, sem desconfiar de nada, abriu a porta. O Lobo, com um pulo rápido, a engoliu de uma só vez! Depois, vestiu a touca da Vovó e deitou-se na cama para esperar.""",
     imageDescription:
-        'O Lobo Mau está deitado na cama da Vovó, usando a touca e os óculos dela. Seu corpo grande está sob as cobertas, e suas orelhas pontudas e olhos de lobo se destacam.',
+        """O Lobo Mau está deitado na cama da Vovó, usando a touca e os óculos dela. Seu corpo grande está sob as cobertas, e suas orelhas pontudas e olhos de lobo se destacam.""",
   ),
   StoryPage(
     pageNumber: 8,
     text:
-        'Finalmente, Chapeuzinho chegou à casa. Ela achou a porta aberta e o quarto muito escuro e silencioso. "Bom dia, Vovó!" ela chamou baixinho.',
+        """Finalmente, Chapeuzinho chegou à casa. Ela achou a porta aberta e o quarto muito escuro e silencioso. "Bom dia, Vovó!" ela chamou baixinho.""",
     imageDescription:
-        'Chapeuzinho Vermelho, com a cesta na mão, entra na casinha escura e silenciosa da Vovó. A porta está entreaberta e a cama com o Lobo disfarçado está visível ao fundo.',
+        """Chapeuzinho Vermelho, com a cesta na mão, entra na casinha escura e silenciosa da Vovó. A porta está entreaberta e a cama com o Lobo disfarçado está visível ao fundo.""",
   ),
   StoryPage(
     pageNumber: 9,
     text:
-        'Ao se aproximar da cama, Chapeuzinho estranhou a figura de sua avó, que parecia tão diferente. "Vovó, que orelhas grandes você tem!" ela disse, assustada.',
+        """Ao se aproximar da cama, Chapeuzinho estranhou a figura de sua avó, que parecia tão diferente. "Vovó, que orelhas grandes você tem!" ela disse, assustada.""",
     imageDescription:
-        'Close-up de Chapeuzinho Vermelho olhando com confusão e um pouco de medo para o Lobo deitado na cama. Orelhas de lobo se projetam da touca.',
+        """Close-up de Chapeuzinho Vermelho olhando com confusão e um pouco de medo para o Lobo deitado na cama. Orelhas de lobo se projetam da touca.""",
   ),
   StoryPage(
     pageNumber: 10,
     text:
-        'A voz rouca do Lobo respondeu: "São para te ouvir melhor, minha netinha!". Chapeuzinho continuou: "Vovó, que boca enorme você tem!". E o Lobo gritou: "É PARA TE COMER!".',
+        """A voz rouca do Lobo respondeu: "São para te ouvir melhor, minha netinha!". Chapeuzinho continuou: "Vovó, que boca enorme você tem!". E o Lobo gritou: "É PARA TE COMER!".""",
     imageDescription:
-        'O Lobo Mau salta da cama, revelando sua forma assustadora, com a boca aberta e dentes grandes. Chapeuzinho Vermelho grita, com a cesta caindo de sua mão.',
+        """O Lobo Mau salta da cama, revelando sua forma assustadora, com a boca aberta e dentes grandes. Chapeuzinho Vermelho grita, com a cesta caindo de sua mão.""",
   ),
   StoryPage(
     pageNumber: 11,
     text:
-        'Nesse momento, um bravo Caçador, que passava por perto, ouviu o grito e entrou correndo na casa. Ele viu o Lobo e soube o que tinha acontecido.',
+        """Nesse momento, um bravo Caçador, que passava por perto, ouviu o grito e entrou correndo na casa. Ele viu o Lobo e soube o que tinha acontecido.""",
     imageDescription:
-        'O Caçador, forte e com barba, aparece na porta, segurando um machado. Ele olha para o Lobo Mau ao lado da cama com uma expressão de determinação.',
+        """O Caçador, forte e com barba, aparece na porta, segurando um machado. Ele olha para o Lobo Mau ao lado da cama com uma expressão de determinação.""",
   ),
   StoryPage(
     pageNumber: 12,
     text:
-        'O Caçador usou sua coragem e um plano esperto para libertar a Vovó e Chapeuzinho Vermelho da barriga do Lobo! As duas estavam vivas e muito aliviadas!',
+        """O Caçador usou sua coragem e um plano esperto para libertar a Vovó e Chapeuzinho Vermelho da barriga do Lobo! As duas estavam vivas e muito aliviadas!""",
     imageDescription:
-        'O Caçador, Chapeuzinho Vermelho e a Vovó, todas abraçadas e sorrindo, com o Lobo Mau derrotado e amarrado em um canto do quarto. A luz do dia entra pela janela.',
+        """O Caçador, Chapeuzinho Vermelho e a Vovó, todas abraçadas e sorrindo, com o Lobo Mau derrotado e amarrado em um canto do quarto. A luz do dia entra pela janela.""",
   ),
   StoryPage(
     pageNumber: 13,
     text:
-        'Chapeuzinho Vermelho aprendeu a lição de nunca conversar com estranhos e sempre seguir as regras da sua mãe. E todos viveram felizes para sempre, comendo bolo e tomando suco!',
+        """Chapeuzinho Vermelho aprendeu a lição de nunca conversar com estranhos e sempre seguir as regras da sua mãe. E todos viveram felizes para sempre, comendo bolo e tomando suco!""",
     imageDescription:
-        'Chapeuzinho Vermelho, sua Mãe e a Vovó sentadas juntas na mesa da cozinha, felizes e saudáveis, dividindo o bolo e o suco. É um ambiente acolhedor e seguro.',
+        """Chapeuzinho Vermelho, sua Mãe e a Vovó sentadas juntas na mesa da cozinha, felizes e saudáveis, dividindo o bolo e o suco. É um ambiente acolhedor e seguro.""",
   ),
   StoryPage(
     pageNumber: 14,
-    text: 'Te aguardo novamente. Até logo.',
-    imageDescription: 'Chapeuzinho vermelho se despede dos amigos.',
+    text: """Te aguardo novamente. Até logo.""",
+    imageDescription: """Chapeuzinho vermelho se despede dos amigos.""",
   ),
 ];
 
@@ -154,21 +159,32 @@ class RedHat extends StatefulWidget {
 class _RedHatState extends State<RedHat> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
-  bool _isSpeaking = false;
-  bool _isLoading = false;
-
-  final AudioPlayer _audioPlayer = AudioPlayer();
-
-  static const String groqApiKey = grok;
+  bool _isPlaying = false;
+  late AudioPlayer _audioPlayer;
 
   @override
   void initState() {
     super.initState();
+
+    _audioPlayer = AudioPlayer();
+
+    _audioPlayer.setPlayerMode(PlayerMode.lowLatency);
+
+    _audioPlayer.setReleaseMode(ReleaseMode.stop);
+
     _pageController.addListener(() {
       final newPage = _pageController.page?.round() ?? 0;
       if (newPage != _currentPage) {
-        _stopSpeaking();
+        _stopAudio();
         setState(() => _currentPage = newPage);
+      }
+    });
+
+    _audioPlayer.onPlayerStateChanged.listen((state) {
+      if (state == PlayerState.completed || state == PlayerState.stopped) {
+        if (mounted) {
+          setState(() => _isPlaying = false);
+        }
       }
     });
   }
@@ -180,118 +196,37 @@ class _RedHatState extends State<RedHat> {
     super.dispose();
   }
 
-  Future<void> _stopSpeaking() async {
+  Future<void> _stopAudio() async {
     await _audioPlayer.stop();
-    if (mounted) setState(() => _isSpeaking = false);
+    if (mounted) setState(() => _isPlaying = false);
   }
 
-  Future<String> _translateToEnglish(String originalText) async {
-    try {
-      final response = await http.post(
-        Uri.parse('https://api.groq.com/openai/v1/chat/completions'),
-        headers: {
-          'Authorization': 'Bearer $groqApiKey',
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'model': 'llama-3.1-70b-versatile',
-          'messages': [
-            {
-              'role': 'system',
-              'content':
-                  'Traduza o texto para inglês de forma natural e envolvente, mantendo o tom alegre e infantil de uma história para crianças. Preserve nomes próprios como "Little Red Riding Hood".',
-            },
-            {'role': 'user', 'content': originalText},
-          ],
-          'max_tokens': 300,
-          'temperature': 0.3,
-        }),
-      );
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        return data['choices'][0]['message']['content'].trim();
-      }
-    } catch (e) {
-      print('Erro na tradução: $e');
-    }
-    return originalText;
-  }
-
-  Future<void> _speakCurrentPage() async {
-    if (_isSpeaking) {
-      await _stopSpeaking();
+  Future<void> _playCurrentPageAudio() async {
+    if (_isPlaying) {
+      await _audioPlayer.stop();
+      setState(() => _isPlaying = false);
       return;
     }
 
-    final originalText = chapeuzinhoVermelhoStory[_currentPage].text;
-
-    setState(() {
-      _isSpeaking = true;
-      _isLoading = true;
-    });
+    final pageIndex = _currentPage + 1;
+    final audioPath = '/sounds/redHat/page$pageIndex.wav';
 
     try {
-      final translatedText = await _translateToEnglish(originalText);
+      await _audioPlayer.play(AssetSource(audioPath));
 
-      final response = await http.post(
-        Uri.parse('https://api.groq.com/openai/v1/audio/speech'),
-        headers: {
-          'Authorization': 'Bearer $groqApiKey',
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'model': 'playai-tts',
-          'input': translatedText,
-          'voice': 'Deedee-PlayAI',
-          'response_format': 'mp3',
-          'speed': 1.0,
-        }),
+      setState(() => _isPlaying = true);
+
+      print("Áudio tocando: $audioPath");
+    } catch (e) {
+      print("ERRO ao tocar áudio: $e");
+      print("Caminho tentado: $audioPath");
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text("Erro ao tocar áudio da página $pageIndex"),
+          backgroundColor: Colors.red,
+        ),
       );
-
-      if (response.statusCode != 200) {
-        throw Exception('Erro API: ${response.statusCode} - ${response.body}');
-      }
-
-      final Uint8List bytes = Uint8List.fromList(response.bodyBytes);
-
-      await _playAudio(bytes);
-    } catch (e) {
-      print('Erro Grok TTS: $e');
-      if (mounted) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(SnackBar(content: Text('Erro ao narrar: $e')));
-      }
-      setState(() => _isSpeaking = false);
-    } finally {
-      if (mounted) setState(() => _isLoading = false);
-    }
-  }
-
-  Future<void> _playAudio(Uint8List bytes) async {
-    try {
-      final tempDir = await getTemporaryDirectory();
-      final filePath = '${tempDir.path}/tts.mp3';
-      final file = File(filePath);
-
-      await file.writeAsBytes(bytes, flush: true);
-
-      await _audioPlayer.stop();
-
-      await _audioPlayer.play(DeviceFileSource(filePath));
-
-      _audioPlayer.onPlayerComplete.listen((_) async {
-        if (mounted) setState(() => _isSpeaking = false);
-        try {
-          if (await file.exists()) await file.delete();
-        } catch (e) {
-          print('Falha ao deletar arquivo temporário: $e');
-        }
-      });
-    } catch (e) {
-      print('Erro ao tocar áudio: $e');
-      if (mounted) setState(() => _isSpeaking = false);
     }
   }
 
@@ -334,9 +269,8 @@ class _RedHatState extends State<RedHat> {
                 final page = chapeuzinhoVermelhoStory[index];
                 return StoryPageWidget(
                   page: page,
-                  isSpeaking: index == _currentPage && _isSpeaking,
-                  isLoading: index == _currentPage && _isLoading,
-                  onSpeak: index == _currentPage ? _speakCurrentPage : null,
+                  isPlaying: index == _currentPage && _isPlaying,
+                  onPlay: index == _currentPage ? _playCurrentPageAudio : null,
                 );
               },
             ),
@@ -414,22 +348,22 @@ class _RedHatState extends State<RedHat> {
 
 class StoryPageWidget extends StatelessWidget {
   final StoryPage page;
-  final bool isSpeaking;
-  final bool isLoading;
-  final VoidCallback? onSpeak;
+  final bool isPlaying;
+  final VoidCallback? onPlay;
 
   const StoryPageWidget({
     super.key,
     required this.page,
-    required this.isSpeaking,
-    required this.isLoading,
-    this.onSpeak,
+    required this.isPlaying,
+    this.onPlay,
   });
+
+  String get _imagePath => 'assets/images/redHat/page${page.pageNumber}.png';
 
   @override
   Widget build(BuildContext context) {
-    final String urlImgBase = 'assets/images/chapeuzinho_vermelho';
     return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
       padding: const EdgeInsets.all(24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -454,48 +388,50 @@ class StoryPageWidget extends StatelessWidget {
                   color: Colors.red.shade50,
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(color: Colors.red.shade300, width: 2),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
+                      color: Colors.grey,
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: const Offset(0, 3),
+                      offset: Offset(0, 3),
                     ),
                   ],
                 ),
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('$urlImgBase/page${page.pageNumber}.png'),
-                      // const Icon(
-                      //   Icons.image,
-                      //   size: 60,
-                      //   color: Colors.redAccent,
-                      // ),
-                      // const SizedBox(height: 10),
-                      // const Text(
-                      //   "Arte da Página aqui",
-                      //   style: TextStyle(
-                      //     fontSize: 18,
-                      //     fontWeight: FontWeight.bold,
-                      //     color: Colors.redAccent,
-                      //   ),
-                      // ),
-                      // const SizedBox(height: 5),
-                      // Padding(
-                      //   padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                      //   child: Text(
-                      //     'Descrição: "${page.imageDescription}"',
-                      //     textAlign: TextAlign.center,
-                      //     style: const TextStyle(
-                      //       fontSize: 12,
-                      //       color: Colors.black54,
-                      //       fontStyle: FontStyle.italic,
-                      //     ),
-                      //   ),
-                      // ),
-                    ],
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(14),
+                  child: Image.asset(
+                    _imagePath,
+                    fit: BoxFit.cover,
+                    width: double.infinity,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.image_not_supported,
+                              size: 60,
+                              color: Colors.redAccent,
+                            ),
+                            const SizedBox(height: 10),
+                            Text(
+                              "Imagem não encontrada",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.red.shade700,
+                              ),
+                            ),
+                            Text(
+                              "page${page.pageNumber}.png",
+                              style: const TextStyle(
+                                fontSize: 12,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -503,20 +439,11 @@ class StoryPageWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: FloatingActionButton(
                   mini: true,
-                  backgroundColor: isLoading
-                      ? Colors.grey
-                      : (isSpeaking ? Colors.orange.shade700 : Colors.green),
-                  onPressed: isLoading ? null : onSpeak,
-                  child: isLoading
-                      ? const SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: CircularProgressIndicator(
-                            color: Colors.white,
-                            strokeWidth: 3,
-                          ),
-                        )
-                      : isSpeaking
+                  backgroundColor: isPlaying
+                      ? Colors.orange.shade700
+                      : Colors.green,
+                  onPressed: onPlay,
+                  child: isPlaying
                       ? const Icon(Icons.stop, color: Colors.white)
                       : const Icon(Icons.volume_up, color: Colors.white),
                 ),
@@ -524,7 +451,6 @@ class StoryPageWidget extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-
           Card(
             elevation: 2,
             shape: RoundedRectangleBorder(
@@ -536,7 +462,7 @@ class StoryPageWidget extends StatelessWidget {
                 page.text,
                 textAlign: TextAlign.justify,
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 18,
                   height: 1.5,
                   color: Colors.black87,
                 ),
