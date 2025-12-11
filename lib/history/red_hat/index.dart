@@ -1,6 +1,6 @@
 import '../base/index.dart';
 
-final List<StoryPage> chapeuzinhoVermelhoStory = [
+final List<StoryPage> redHatHistory = [
   StoryPage(
     pageNumber: 1,
     text:

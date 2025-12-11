@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
 
-// import 'initialPage.dart';
-import 'redHat.dart';
+import 'screens/story_viewer_screen.dart';
+import 'stories/story_registry.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const AnimalMelodyStoriesApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class AnimalMelodyStoriesApp extends StatelessWidget {
+  const AnimalMelodyStoriesApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Histórias Infantis',
       debugShowCheckedModeBanner: false,
-      title: 'Histórias Encantadas',
-      home: const RedHat(),
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        fontFamily: 'Inter',
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+        scaffoldBackgroundColor: const Color(0xFFF9E0),
+      ),
+      home: StoryViewerScreen(storyConfig: StoryRegistry.getStory('red_hat')!),
     );
   }
 }
