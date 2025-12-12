@@ -67,21 +67,8 @@ flutter:
     - assets/images/snowWhite/
     - assets/images/redHat/
     - assets/sounds/redHat/
-    # - assets/images/redHat/page1.png
-    # - assets/images/redHat/page2.png
-    # - assets/images/redHat/page3.png
-    # - assets/images/redHat/page4.png
-    # - assets/images/redHat/page5.png
-    # - assets/images/redHat/page6.png
-    # - assets/images/redHat/page7.png
-    # - assets/images/redHat/page8.png
-    # - assets/images/redHat/page9.png
-    # - assets/images/redHat/page10.png
-    # - assets/images/redHat/page11.png
-    # - assets/images/redHat/page12.png
-    # - assets/images/redHat/page13.png
-    # - assets/images/redHat/page14.png
-    # - assets/images/redHat/capa.png
+    - assets/images/threeLittlePigs/
+    - assets/sounds/threeLittlePigs/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
