@@ -23,9 +23,12 @@ class NavigationControls extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       decoration: BoxDecoration(
-        color: backgroundColor.withOpacity(0.2),
+        color: backgroundColor.withValues(alpha: 0.2),
         border: Border(
-          top: BorderSide(color: backgroundColor.withOpacity(0.5), width: 2),
+          top: BorderSide(
+            color: backgroundColor.withValues(alpha: 0.5),
+            width: 2,
+          ),
         ),
       ),
       child: Row(
@@ -73,7 +76,7 @@ class NavigationControls extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         backgroundColor: onPressed != null
             ? Colors.white
-            : backgroundColor.withOpacity(0.1),
+            : backgroundColor.withValues(alpha: 0.1),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         elevation: onPressed != null ? 3 : 0,
       ),

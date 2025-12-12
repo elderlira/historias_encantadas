@@ -46,7 +46,7 @@ class StoryListScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   gradient: LinearGradient(
                     colors: [
-                      story.primaryColor.withOpacity(0.7),
+                      story.primaryColor.withValues(alpha: 0.7),
                       story.primaryColor,
                     ],
                   ),
@@ -84,7 +84,7 @@ class StoryListScreen extends StatelessWidget {
                             '${story.pages.length} páginas',
                             style: TextStyle(
                               fontSize: 14,
-                              color: Colors.white.withOpacity(0.9),
+                              color: Colors.white.withValues(alpha: 0.9),
                             ),
                           ),
                         ],

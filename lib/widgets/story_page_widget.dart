@@ -32,7 +32,7 @@ class StoryPageWidget extends StatelessWidget {
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: accentColor,
+              color: Colors.white,
             ),
           ),
           const SizedBox(height: 16),
@@ -42,10 +42,10 @@ class StoryPageWidget extends StatelessWidget {
               Container(
                 height: MediaQuery.of(context).size.height * 0.45,
                 decoration: BoxDecoration(
-                  color: accentColor.withOpacity(0.1),
+                  color: accentColor.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(16),
                   border: Border.all(
-                    color: accentColor.withOpacity(0.5),
+                    color: accentColor.withValues(alpha: 0.5),
                     width: 2,
                   ),
                   boxShadow: const [
