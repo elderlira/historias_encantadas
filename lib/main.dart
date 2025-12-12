@@ -22,7 +22,9 @@ class AnimalMelodyStoriesApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
         scaffoldBackgroundColor: const Color(0xFFF9E0),
       ),
-      home: StoryViewerScreen(storyConfig: StoryRegistry.getStory('red_hat')!),
+      home: StoryViewerScreen(
+        storyConfig: StoryRegistry.getStory('three_little_pigs')!,
+      ),
     );
   }
 }
