@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:historias_encantadas/screens/language_selection_screen.dart';
 
+import '../l10n/app_localizations.dart';
 import '../stories/story_registry.dart';
 import 'story_viewer_screen.dart';
 
@@ -8,17 +10,36 @@ class StoryListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final stories = StoryRegistry.getAllStories();
+    final stories = StoryRegistry.getAllStories(context);
+    final t = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Histórias Infantis',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        title: Text(
+          t.storiesTitle,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
         ),
         backgroundColor: Colors.purple.shade600,
         elevation: 4,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) =>
+                      const LanguageSelectionScreen(isSettings: true),
+                ),
+              );
+            },
+          ),
+        ],
       ),
+
       body: ListView.builder(
         padding: const EdgeInsets.all(16),
         itemCount: stories.length,
