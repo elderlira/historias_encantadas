@@ -94,6 +94,29 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
     }
   }
 
+  // void _gotToStart() {
+  //   if (_currentPage == widget.storyConfig.pages.length) {
+  //     print("paginas no total: ${widget.storyConfig.pages.length}");
+  //     print('pagina atual ${widget.storyConfig.pages}');
+  //     print(_pageController.initialPage);
+  //     _pageController.initialPage;
+  //   }
+  // }
+
+  void _goToStart() async {
+    await _stopAudio();
+
+    _pageController.animateToPage(
+      0,
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
+
+    setState(() {
+      _currentPage = 0;
+    });
+  }
+
   void _goToPreviousPage() {
     if (_currentPage > 0) {
       _pageController.previousPage(
@@ -141,7 +164,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
             onPrevious: _currentPage > 0 ? _goToPreviousPage : null,
             onNext: _currentPage < widget.storyConfig.pages.length - 1
                 ? _goToNextPage
-                : null,
+                : _goToStart,
             backgroundColor: widget.storyConfig.primaryColor,
             buttonColor: widget.storyConfig.accentColor,
           ),

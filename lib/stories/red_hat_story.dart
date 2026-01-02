@@ -28,14 +28,14 @@ final StoryConfig redHatStory = StoryConfig(
     StoryPage(
       pageNumber: 3,
       text:
-          """Chapeuzinho ficou muito feliz com a tarefa, pois gostava muito de sua avó e adorava ouvir as histórias que ela contava, foi em direção a floresta cantando e saltitando pela floresta""",
+          """Chapeuzinho ficou muito feliz com a tarefa, pois gostava muito de sua avó e adorava ouvir as histórias que ela contava, foi em direção a floresta cantando e saltitando.""",
       imageDescription:
           """Chapeuzinho Vermelho, carregando a cesta, andando sozinha por um caminho de terra na floresta. As árvores são altas e a luz do sol passa por elas.""",
     ),
     StoryPage(
       pageNumber: 4,
       text:
-          """De repente, no meio do caminho ela ouviu um ruído vindo da mata fora da trilha, ao olhar viu um logo gigante a observando. O logo perguntou: o que uma menina estava fazendo sozinha na floresta. Chapeuzinho esqueceu o conselho da sua mãe, respondeu ao lobo. Estou indo levar esta cesta de frutas para minha vovó que esta doente.""",
+          """De repente, no meio do caminho ela ouviu um ruído vindo da mata fora da trilha, ao olhar viu um lobo gigante a observando. O lobo perguntou: o que uma menina estava fazendo sozinha na floresta. Chapeuzinho esqueceu o conselho da sua mãe, respondeu ao lobo. Estou indo levar esta cesta de frutas para minha vovó que esta doente.""",
       imageDescription:
           """O Lobo Mau, com um sorriso astuto e olhos amarelos, conversa com Chapeuzinho Vermelho no caminho da floresta. Chapeuzinho está curiosa, mas inocente.""",
     ),

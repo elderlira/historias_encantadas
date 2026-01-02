@@ -49,7 +49,7 @@ class NavigationControls extends StatelessWidget {
           ),
           _buildNavButton(
             icon: Icons.arrow_forward_ios,
-            label: currentPage == totalPages - 1 ? "Fim" : "Próxima",
+            label: currentPage == totalPages - 1 ? "Início" : "Próxima",
             onPressed: onNext,
           ),
         ],
