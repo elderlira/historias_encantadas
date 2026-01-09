@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../models/story_config.dart';
-import '../models/story_page.dart';
+import '../../models/story_config.dart';
+import '../../models/story_page.dart';
 
 class ThreeLittlePigsStory {
   static StoryConfig build(String lang) {
@@ -71,7 +71,7 @@ class ThreeLittlePigsStory {
         StoryPage(
           pageNumber: 7,
           text:
-              """ "Abra a porta! Se não abrir, eu vou soprar e a sua casa vou derrubar!" O lobo encheu os pulmões e... PFFFF! """,
+              """Abra a porta! Se não abrir, eu vou soprar e a sua casa vou derrubar!" O lobo encheu os pulmões e... PFFFF! """,
           imageDescription:
               """O Lobo Mau está soprando com força, bochechas infladas. A casa de palha está sendo levantada pelo vento forte, com pedaços de palha voando.""",
         ),
@@ -85,7 +85,7 @@ class ThreeLittlePigsStory {
         StoryPage(
           pageNumber: 9,
           text:
-              """O Lobo Mau foi atrás deles e chegou à casa de madeira. "Abram a porta, seus porquinhos!" """,
+              """O Lobo Mau foi atrás deles e chegou à casa de madeira. "Abram a porta, seus porquinhos! """,
           imageDescription:
               """O Lobo Mau está em frente à casa de madeira. Os dois porquinhos (Cícero e Heitor) estão juntos e assustados, olhando pela janela.""",
         ),
@@ -202,15 +202,13 @@ class ThreeLittlePigsStory {
           pageNumber: 5,
           text:
               """Os três porquinhos estavam felizes em suas casas novas. Mas, na floresta, vivia o Lobo Mau.""",
-          imageDescription:
-              """O Lobo Mau (grande, de dentes afiados, com um olhar astuto) aparece espiando por trás de uma árvore escura. Ele está olhando para as três casas no campo.""",
+          imageDescription: """""",
         ),
         StoryPage(
           pageNumber: 6,
           text:
               """O Lobo Mau chegou primeiro na casa de palha de Cícero. Ele bateu na porta.""",
-          imageDescription:
-              """O Lobo Mau está em frente à pequena e frágil casa de palha. O Porquinho Cícero está olhando assustado pela janela.""",
+          imageDescription: """""",
         ),
         StoryPage(
           pageNumber: 7,
