@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:historias_encantadas/l10n/app_localizations.dart';
 
 class NavigationControls extends StatelessWidget {
   final int currentPage;
@@ -20,6 +21,8 @@ class NavigationControls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
       decoration: BoxDecoration(
@@ -36,11 +39,11 @@ class NavigationControls extends StatelessWidget {
         children: [
           _buildNavButton(
             icon: Icons.arrow_back_ios_new,
-            label: "Anterior",
+            label: t.previous,
             onPressed: onPrevious,
           ),
           Text(
-            "Página ${currentPage + 1} de $totalPages",
+            "${currentPage + 1} / $totalPages",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
@@ -49,7 +52,7 @@ class NavigationControls extends StatelessWidget {
           ),
           _buildNavButton(
             icon: Icons.arrow_forward_ios,
-            label: currentPage == totalPages - 1 ? "Início" : "Próxima",
+            label: currentPage == totalPages - 1 ? t.start : t.next,
             onPressed: onNext,
           ),
         ],

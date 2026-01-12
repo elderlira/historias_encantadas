@@ -20,4 +20,28 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get threePigs => '三隻小豬';
+
+  @override
+  String get page => '頁面';
+
+  @override
+  String get start => '首頁';
+
+  @override
+  String get next => '下一頁';
+
+  @override
+  String get previous => '上一頁';
+
+  @override
+  String get historyDay => '当天的故事';
+
+  @override
+  String get choiceHistory => '選擇一個故事';
+
+  @override
+  String get initialTitle => '魔法故事';
+
+  @override
+  String get subtitleHistory => '一個充滿奇幻故事的世界，讓孩子著迷。';
 }

@@ -26,4 +26,29 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get threePigs => 'Os Três Porquinhos';
+
+  @override
+  String get page => 'páginas';
+
+  @override
+  String get start => 'Início';
+
+  @override
+  String get next => 'Próximo';
+
+  @override
+  String get previous => 'Anterior';
+
+  @override
+  String get historyDay => 'História do dia';
+
+  @override
+  String get choiceHistory => 'Escolha uma história';
+
+  @override
+  String get initialTitle => 'Histórias Encantadas';
+
+  @override
+  String get subtitleHistory =>
+      'Um mundo mágico de histórias para encantar crianças';
 }

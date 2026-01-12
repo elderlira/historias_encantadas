@@ -28,4 +28,6 @@ class StoryConfig {
   String getImagePath(int pageNumber) {
     return '$imageBasePath/page$pageNumber.png';
   }
+
+  String get iconPath => 'assets/images/icons/$storyId.png';
 }

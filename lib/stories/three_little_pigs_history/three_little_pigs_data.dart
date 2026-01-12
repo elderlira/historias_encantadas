@@ -5,7 +5,7 @@ class ThreeLittlePigsData implements StoryData {
   const ThreeLittlePigsData();
 
   @override
-  String get historyId => 'three_little_pigs';
+  String get historyId => 'threeLittlePigs';
 
   @override
   LocalizedText get title => LocalizedText({

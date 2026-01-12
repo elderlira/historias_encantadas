@@ -12,6 +12,7 @@ class ThreeLittlePigsStory {
     //   data.pages.length == data.imageDescriptions.length,
     //   'Quantidade de textos e descrições de imagem não coincidem',
     // );
+    print(data.historyId);
 
     return StoryConfig(
       title: data.title.of(langCode),

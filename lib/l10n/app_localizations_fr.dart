@@ -26,4 +26,29 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get threePigs => 'The Three Little Pigs';
+
+  @override
+  String get page => 'pages';
+
+  @override
+  String get start => 'Accueil';
+
+  @override
+  String get next => 'Suivant';
+
+  @override
+  String get previous => 'Précédent';
+
+  @override
+  String get historyDay => 'histoire du jour';
+
+  @override
+  String get choiceHistory => 'Choisissez une histoire';
+
+  @override
+  String get initialTitle => 'Histoires enchantées';
+
+  @override
+  String get subtitleHistory =>
+      "Un monde magique d'histoires pour enchanter les enfants.";
 }

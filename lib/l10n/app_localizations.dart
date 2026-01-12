@@ -51,6 +51,22 @@ abstract class AppLocalizations {
   String get littleRed;
 
   String get threePigs;
+
+  String get page;
+
+  String get start;
+
+  String get next;
+
+  String get previous;
+
+  String get historyDay;
+
+  String get choiceHistory;
+
+  String get initialTitle;
+
+  String get subtitleHistory;
 }
 
 class _AppLocalizationsDelegate
