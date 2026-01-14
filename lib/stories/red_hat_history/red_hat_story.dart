@@ -8,10 +8,10 @@ final data = const RedHatData();
 
 class RedHatStory {
   static StoryConfig build(String langCode) {
-    // assert(
-    //   data.pages.length == data.imageDescriptions.length,
-    //   'Quantidade de textos e descrições de imagem não coincidem',
-    // );
+    assert(
+      data.pages.length == data.imageDescriptions.length,
+      'Quantidade de textos e descrições de imagem não coincidem',
+    );
 
     return StoryConfig(
       title: data.title.of(langCode),

@@ -184,7 +184,6 @@ class RedHatData implements StoryData {
       'zh':
           "有一天，媽媽請她把這籃水果和蛋糕送到生病的奶奶家，奶奶住在森林的另一邊。媽媽告訴她要沿著小路走，不要跟陌生人說話，因為森林裡住著一隻非常兇惡的狼。",
     }),
-    // demais páginas...
   ];
 
   @override

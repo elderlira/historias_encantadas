@@ -211,10 +211,21 @@ class _StoryListScreenState extends State<StoryListScreen> {
                   const SizedBox(height: 16),
 
                   /// 🎠 CARROSSEL
-                  SizedBox(
-                    height: 200,
+                  Container(
+                    height: 280,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.white.withValues(alpha: 0.18),
+                          Colors.white.withValues(alpha: 0.05),
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                      ),
+                    ),
                     child: PageView.builder(
-                      controller: PageController(viewportFraction: 0.7),
+                      controller: PageController(viewportFraction: 0.70),
                       itemCount: stories.length,
                       itemBuilder: (context, index) {
                         final story = stories[index];
@@ -230,65 +241,82 @@ class _StoryListScreenState extends State<StoryListScreen> {
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 8,
+                            ),
                             child: Container(
                               decoration: BoxDecoration(
+                                color: Colors.white70,
                                 borderRadius: BorderRadius.circular(24),
-                                gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    story.primaryColor.withValues(alpha: 0.75),
-                                    story.primaryColor,
-                                  ],
-                                ),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.25),
+                                    color: Colors.black.withValues(alpha: 0.15),
                                     blurRadius: 8,
                                     offset: const Offset(0, 4),
                                   ),
                                 ],
                               ),
                               child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
-                                    width: 70,
-                                    height: 70,
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(18),
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(18),
-                                      child: Image.asset(
-                                        story.iconPath,
-                                        fit: BoxFit.contain,
+                                  const SizedBox(height: 12),
+
+                                  /// 🖼 IMAGEM DA HISTÓRIA
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 6,
+                                      ),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(18),
+                                        child: Image.asset(
+                                          story.getImagePath(
+                                            1,
+                                          ), // imagem da primeira página
+                                          fit: BoxFit.contain,
+                                          errorBuilder: (_, __, ___) =>
+                                              Image.asset(
+                                                story.iconPath,
+                                                fit: BoxFit.contain,
+                                              ),
+                                        ),
                                       ),
                                     ),
                                   ),
+
                                   const SizedBox(height: 12),
+
+                                  /// 📖 TÍTULO
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
+                                      horizontal: 10,
                                     ),
                                     child: Text(
                                       story.title,
                                       textAlign: TextAlign.center,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
                                       style: const TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 12,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.white,
+                                        color: Color(0xFF3A2E2E),
                                       ),
                                     ),
                                   ),
+
                                   const SizedBox(height: 4),
-                                  Text(
-                                    '${story.pages.length} ${t.page}',
-                                    style: const TextStyle(
-                                      fontSize: 13,
-                                      color: Colors.white70,
+
+                                  /// ⏱ TEMPO / PÁGINAS
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 12),
+                                    child: Text(
+                                      '${story.pages.length} ${t.page}',
+                                      style: const TextStyle(
+                                        fontSize: 13,
+                                        color: Color(0xFF6D5C5C),
+                                      ),
                                     ),
                                   ),
                                 ],

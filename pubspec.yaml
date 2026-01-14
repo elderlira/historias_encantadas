@@ -45,10 +45,11 @@ flutter:
     - assets/images/background.png
     - assets/images/snowWhite/
     - assets/images/redHat/
-    - assets/sounds/redHat/
     - assets/images/icons/
     - assets/images/threeLittlePigs/
-    - assets/sounds/threeLittlePigs/
+    - assets/sounds/pt/redHat/
+    - assets/sounds/pt/snowWhite/
+    - assets/sounds/pt/threeLittlePigs/
     - assets/flags/br.svg
     - assets/flags/cn.svg
     - assets/flags/es.svg
