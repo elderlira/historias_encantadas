@@ -70,7 +70,6 @@ class _StoryListScreenState extends State<StoryListScreen> {
 
       body: Stack(
         children: [
-          /// 🌄 BACKGROUND
           Positioned.fill(
             child: Image.asset(
               'assets/images/background.png',
@@ -78,12 +77,11 @@ class _StoryListScreenState extends State<StoryListScreen> {
             ),
           ),
 
-          /// 🌫 OVERLAY SUAVE
           Positioned.fill(
             child: Container(color: Colors.black.withValues(alpha: 0.25)),
           ),
 
-          /// 🧩 CONTEÚDO
+          /// CONTEÚDO
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -91,12 +89,12 @@ class _StoryListScreenState extends State<StoryListScreen> {
                 children: [
                   const SizedBox(height: 20),
 
-                  /// 🌈 TÍTULO / LOGO
+                  /// LOGO
                   TitleCartoon(text: t.initialTitle),
 
                   const SizedBox(height: 8),
 
-                  /// ✨ SUBTÍTULO
+                  /// SUBTÍTULO
                   Text(
                     t.subtitleHistory,
                     textAlign: TextAlign.center,
@@ -109,7 +107,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
 
                   const SizedBox(height: 24),
 
-                  /// 🌟 CARD: HISTÓRIA DO DIA (DINÂMICO)
+                  /// HISTÓRIA DO DIA
                   GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -192,7 +190,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
 
                   const SizedBox(height: 24),
 
-                  /// 📚 TÍTULO DA SEÇÃO
+                  /// TÍTULO DA SEÇÃO
                   Row(
                     children: [
                       Icon(Icons.book, color: Colors.white),
@@ -210,7 +208,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
 
                   const SizedBox(height: 16),
 
-                  /// 🎠 CARROSSEL
+                  /// CARROSSEL
                   Container(
                     height: 280,
                     decoration: BoxDecoration(
@@ -263,7 +261,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
                                 children: [
                                   const SizedBox(height: 12),
 
-                                  /// 🖼 IMAGEM DA HISTÓRIA
+                                  /// IMAGEM DA HISTÓRIA
                                   Expanded(
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -288,7 +286,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
 
                                   const SizedBox(height: 12),
 
-                                  /// 📖 TÍTULO
+                                  /// TÍTULO
                                   Padding(
                                     padding: const EdgeInsets.symmetric(
                                       horizontal: 10,
@@ -308,7 +306,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
 
                                   const SizedBox(height: 4),
 
-                                  /// ⏱ TEMPO / PÁGINAS
+                                  /// PÁGINAS
                                   Padding(
                                     padding: const EdgeInsets.only(bottom: 12),
                                     child: Text(

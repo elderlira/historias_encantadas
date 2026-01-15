@@ -1,6 +1,13 @@
+import 'dart:convert';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
+import 'package:historias_encantadas/providers/locale_provider.dart';
+import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
 
+import '../apikey.dart';
 import '../models/story_config.dart';
 import '../widgets/navigation_controls.dart';
 import '../widgets/story_page_widget.dart';
@@ -19,13 +26,61 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
   int _currentPage = 0;
   bool _isPlaying = false;
   late AudioPlayer _audioPlayer;
+  static const String groqApiKey = grok;
+  late FlutterTts _flutterTts;
+
+  String _prepareTextForTts(String text) {
+    return text
+        .replaceAll('.', '.\n\n')
+        .replaceAll('!', '!\n\n')
+        .replaceAll('?', '?\n\n')
+        .replaceAll(',', ',\n')
+        .replaceAll(';', ';\n')
+        .replaceAll(':', ':\n');
+  }
+
+  String _ttsLocaleFromLang(String langCode) {
+    switch (langCode) {
+      case 'en':
+        return 'en-US';
+      case 'es':
+        return 'es-ES';
+      case 'fr':
+        return 'fr-FR';
+      case 'zh':
+      case 'zh-CN':
+        return 'zh-CN';
+      case 'zh-TW':
+        return 'zh-TW';
+      default:
+        return 'en-US';
+    }
+  }
 
   @override
   void initState() {
     super.initState();
+    _flutterTts = FlutterTts();
+    _flutterTts.setSpeechRate(0.35);
+    _flutterTts.setPitch(1.2);
+    _flutterTts.setVolume(1);
+    _flutterTts.awaitSpeakCompletion(true);
+
     _audioPlayer = AudioPlayer();
     _audioPlayer.setPlayerMode(PlayerMode.lowLatency);
     _audioPlayer.setReleaseMode(ReleaseMode.stop);
+
+    _flutterTts.setCompletionHandler(() {
+      if (mounted) {
+        setState(() => _isPlaying = false);
+      }
+    });
+
+    _flutterTts.setErrorHandler((msg) {
+      if (mounted) {
+        setState(() => _isPlaying = false);
+      }
+    });
 
     _pageController.addListener(() {
       final newPage = _pageController.page?.round() ?? 0;
@@ -35,11 +90,9 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
       }
     });
 
-    _audioPlayer.onPlayerStateChanged.listen((state) {
-      if (state == PlayerState.completed || state == PlayerState.stopped) {
-        if (mounted) {
-          setState(() => _isPlaying = false);
-        }
+    _audioPlayer.onPlayerComplete.listen((event) {
+      if (mounted) {
+        setState(() => _isPlaying = false);
       }
     });
   }
@@ -47,41 +100,99 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
   @override
   void dispose() {
     _audioPlayer.dispose();
+    _flutterTts.stop();
     _pageController.dispose();
     super.dispose();
   }
 
   Future<void> _stopAudio() async {
     await _audioPlayer.stop();
+    await _flutterTts.stop();
     if (mounted) setState(() => _isPlaying = false);
   }
 
+  Future<String> _translateText(
+    String originalText,
+    String targetLanguage,
+  ) async {
+    try {
+      final response = await http.post(
+        Uri.parse('https://api.groq.com/openai/v1/chat/completions'),
+        headers: {
+          'Authorization': 'Bearer $groqApiKey',
+          'Content-Type': 'application/json',
+        },
+        body: jsonEncode({
+          'model': 'llama-3.1-70b-versatile',
+          'messages': [
+            {
+              'role': 'system',
+              'content':
+                  'Traduza o texto para $targetLanguage de forma natural, '
+                  'com tom alegre e infantil para crianças. '
+                  'Preserve nomes próprios.',
+            },
+            {'role': 'user', 'content': originalText},
+          ],
+          'max_tokens': 300,
+          'temperature': 0.3,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return data['choices'][0]['message']['content'].trim();
+      }
+    } catch (e) {
+      print('Erro na tradução: $e');
+    }
+
+    return originalText;
+  }
+
+  void _showError(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message), backgroundColor: Colors.red),
+    );
+  }
+
   Future<void> _playCurrentPageAudio() async {
+    final originalText = widget.storyConfig.pages[_currentPage].text;
+
     if (_isPlaying) {
-      await _audioPlayer.stop();
-      setState(() => _isPlaying = false);
+      await _stopAudio();
       return;
     }
 
     final pageNumber = _currentPage + 1;
-    final audioPath = widget.storyConfig.getAudioPath(pageNumber);
+    final languageCode = context.read<LocaleProvider>().locale.languageCode;
 
-    try {
-      await _audioPlayer.play(AssetSource(audioPath));
-      setState(() => _isPlaying = true);
-      print("Áudio tocando: $audioPath");
-    } catch (e) {
-      print("ERRO ao tocar áudio: $e");
-      print("Caminho tentado: $audioPath");
+    // ▶️ MARCA COMO TOCANDO ANTES
+    setState(() => _isPlaying = true);
 
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text("Erro ao tocar áudio da página $pageNumber"),
-            backgroundColor: Colors.red,
-          ),
-        );
+    // 🇧🇷 PORTUGUÊS → áudio local
+    if (languageCode == 'pt') {
+      try {
+        final audioPath = widget.storyConfig.getAudioPath(pageNumber);
+        await _audioPlayer.play(AssetSource(audioPath));
+      } catch (e) {
+        _showError('Erro ao tocar áudio local');
+        setState(() => _isPlaying = false);
       }
+      return;
+    }
+
+    // 🌍 OUTROS IDIOMAS → IA + TTS
+    try {
+      final translatedText = await _translateText(originalText, languageCode);
+      await _flutterTts.setLanguage(_ttsLocaleFromLang(languageCode));
+
+      final preparedText = _prepareTextForTts(translatedText);
+      await _flutterTts.speak(preparedText);
+    } catch (e) {
+      _showError('Erro ao gerar narração');
+      setState(() => _isPlaying = false);
     }
   }
 
