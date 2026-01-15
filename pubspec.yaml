@@ -26,6 +26,7 @@ dependencies:
   provider: ^6.1.5+1
   country_icons: ^3.0.0
   flutter_svg: ^2.2.3
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -62,4 +63,12 @@ l10n:
   template-arb-file: app_pt.arb
   output-localization-file: l10n.dart
   output-class: S
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icons/open_program.png"
+  remove_alpha_ios: true
+  adaptive_icon_background: "#030202"
+  adaptive_icon_foreground: "assets/images/icons/open_program.png"
 
