@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:audioplayers/audioplayers.dart';
@@ -28,6 +29,8 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
   late AudioPlayer _audioPlayer;
   static const String groqApiKey = grok;
   late FlutterTts _flutterTts;
+  Timer? _statusCheckTimer;
+  bool _ttsIsActive = false;
 
   String _prepareTextForTts(String text) {
     return text
@@ -57,30 +60,86 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
     }
   }
 
+  Duration _estimateTtsDuration(String text) {
+    final wordCount = text.split(RegExp(r'\s+')).length;
+    // Calcula duração baseada em palavras por minuto
+    final seconds = (wordCount * 0.55).ceil();
+    return Duration(seconds: seconds);
+  }
+
+  /// Inicia monitoramento ativo do TTS com base em tempo estimado
+  void _startTtsMonitoring(String text) {
+    _statusCheckTimer?.cancel();
+    _ttsIsActive = true;
+
+    final estimatedDuration = _estimateTtsDuration(text);
+
+    _statusCheckTimer = Timer(estimatedDuration, () {
+      _ttsIsActive = false;
+
+      if (mounted) {
+        setState(() {
+          _isPlaying = false;
+        });
+
+        // Força rebuild adicional após 100ms
+        Future.delayed(const Duration(milliseconds: 100), () {
+          if (mounted) {
+            setState(() {});
+          }
+        });
+      }
+
+      _statusCheckTimer?.cancel();
+      _statusCheckTimer = null;
+    });
+  }
+
+  void _stopMonitoring() {
+    _statusCheckTimer?.cancel();
+    _statusCheckTimer = null;
+    _ttsIsActive = false;
+  }
+
   @override
   void initState() {
     super.initState();
+
     _flutterTts = FlutterTts();
     _flutterTts.setSpeechRate(0.35);
     _flutterTts.setPitch(1.2);
-    _flutterTts.setVolume(1);
-    _flutterTts.awaitSpeakCompletion(true);
-
-    _audioPlayer = AudioPlayer();
-    _audioPlayer.setPlayerMode(PlayerMode.lowLatency);
-    _audioPlayer.setReleaseMode(ReleaseMode.stop);
+    _flutterTts.setVolume(1.0);
 
     _flutterTts.setCompletionHandler(() {
+      _stopMonitoring();
+
       if (mounted) {
-        setState(() => _isPlaying = false);
+        setState(() {
+          _isPlaying = false;
+          _ttsIsActive = false;
+        });
+
+        Future.delayed(const Duration(milliseconds: 100), () {
+          if (mounted) {
+            setState(() {});
+          }
+        });
       }
     });
 
     _flutterTts.setErrorHandler((msg) {
+      print('TTS: Erro - $msg');
+      _stopMonitoring();
       if (mounted) {
-        setState(() => _isPlaying = false);
+        setState(() {
+          _isPlaying = false;
+          _ttsIsActive = false;
+        });
       }
     });
+
+    _audioPlayer = AudioPlayer();
+    _audioPlayer.setReleaseMode(ReleaseMode.stop);
 
     _pageController.addListener(() {
       final newPage = _pageController.page?.round() ?? 0;
@@ -95,10 +154,19 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
         setState(() => _isPlaying = false);
       }
     });
+
+    _audioPlayer.onPlayerStateChanged.listen((state) {
+      if (state == PlayerState.completed || state == PlayerState.stopped) {
+        if (mounted) {
+          setState(() => _isPlaying = false);
+        }
+      }
+    });
   }
 
   @override
   void dispose() {
+    _stopMonitoring();
     _audioPlayer.dispose();
     _flutterTts.stop();
     _pageController.dispose();
@@ -106,9 +174,17 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
   }
 
   Future<void> _stopAudio() async {
+    _stopMonitoring();
+
     await _audioPlayer.stop();
     await _flutterTts.stop();
-    if (mounted) setState(() => _isPlaying = false);
+
+    if (mounted) {
+      setState(() {
+        _isPlaying = false;
+        _ttsIsActive = false;
+      });
+    }
   }
 
   Future<String> _translateText(
@@ -150,13 +226,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
     return originalText;
   }
 
-  void _showError(String message) {
-    if (!mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), backgroundColor: Colors.red),
-    );
-  }
-
   Future<void> _playCurrentPageAudio() async {
     final originalText = widget.storyConfig.pages[_currentPage].text;
 
@@ -165,34 +234,42 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
       return;
     }
 
-    final pageNumber = _currentPage + 1;
     final languageCode = context.read<LocaleProvider>().locale.languageCode;
 
-    // ▶️ MARCA COMO TOCANDO ANTES
-    setState(() => _isPlaying = true);
-
-    // 🇧🇷 PORTUGUÊS → áudio local
     if (languageCode == 'pt') {
       try {
-        final audioPath = widget.storyConfig.getAudioPath(pageNumber);
+        setState(() => _isPlaying = true);
+
+        final audioPath = widget.storyConfig.getAudioPath(_currentPage + 1);
         await _audioPlayer.play(AssetSource(audioPath));
       } catch (e) {
-        _showError('Erro ao tocar áudio local');
-        setState(() => _isPlaying = false);
+        print('Erro ao reproduzir áudio: $e');
+        if (mounted) {
+          setState(() => _isPlaying = false);
+        }
       }
       return;
     }
 
-    // 🌍 OUTROS IDIOMAS → IA + TTS
     try {
+      setState(() => _isPlaying = true);
+
       final translatedText = await _translateText(originalText, languageCode);
       await _flutterTts.setLanguage(_ttsLocaleFromLang(languageCode));
 
       final preparedText = _prepareTextForTts(translatedText);
+
       await _flutterTts.speak(preparedText);
+
+      _startTtsMonitoring(preparedText);
     } catch (e) {
-      _showError('Erro ao gerar narração');
-      setState(() => _isPlaying = false);
+      print('Erro no TTS: $e');
+      if (mounted) {
+        setState(() {
+          _isPlaying = false;
+          _ttsIsActive = false;
+        });
+      }
     }
   }
 
@@ -204,15 +281,6 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
       );
     }
   }
-
-  // void _gotToStart() {
-  //   if (_currentPage == widget.storyConfig.pages.length) {
-  //     print("paginas no total: ${widget.storyConfig.pages.length}");
-  //     print('pagina atual ${widget.storyConfig.pages}');
-  //     print(_pageController.initialPage);
-  //     _pageController.initialPage;
-  //   }
-  // }
 
   void _goToStart() async {
     await _stopAudio();
