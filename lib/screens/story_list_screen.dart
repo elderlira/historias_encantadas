@@ -45,7 +45,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
     return Scaffold(
       appBar: AppBar(
         title: TitleCartoon(text: t.initialTitle),
-        backgroundColor: Color(0xff30679a),
+        backgroundColor: Color(0xff9a508c),
         elevation: 4,
         actions: [
           IconButton(
@@ -71,7 +71,15 @@ class _StoryListScreenState extends State<StoryListScreen> {
                 child: Container(
                   padding: EdgeInsets.only(top: 30.0),
                   width: double.infinity,
-                  color: Color(0xff3ccdac),
+
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xff9a508c), Color(0xff30679a)],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                  // color: Color(0xff3ccdac),
                   alignment: Alignment.topCenter,
                   child: Column(
                     children: [
