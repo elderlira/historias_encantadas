@@ -15,7 +15,7 @@ class TitleCartoon extends StatelessWidget {
           text,
           style: TextStyle(
             fontFamily: 'Baloo2',
-            fontSize: 34,
+            fontSize: 24,
             fontWeight: FontWeight.w800,
             foreground: Paint()
               ..style = PaintingStyle.stroke
@@ -29,7 +29,7 @@ class TitleCartoon extends StatelessWidget {
           text,
           style: const TextStyle(
             fontFamily: 'Baloo2',
-            fontSize: 34,
+            fontSize: 24,
             fontWeight: FontWeight.w800,
             color: Color(0xFFFFF1B5), // amarelo claro
             shadows: [
