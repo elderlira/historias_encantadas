@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:historias_encantadas/screens/language_selection_screen.dart';
+import 'package:historias_encantadas/widgets/title_cartoon.dart';
 
 import '../l10n/app_localizations.dart';
 import '../stories/story_registry.dart';
-import '../widgets/title_cartoon.dart';
 import 'story_viewer_screen.dart';
 
 class StoryListScreen extends StatefulWidget {
@@ -42,32 +42,25 @@ class _StoryListScreenState extends State<StoryListScreen> {
     );
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          t.storiesTitle,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: Colors.purple.shade600,
-        elevation: 4,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings, color: Colors.white),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (_) =>
-                      const LanguageSelectionScreen(isSettings: true),
-                ),
-              );
-            },
-          ),
-        ],
-      ),
-
+      // appBar: AppBar(
+      //   title: TitleCartoon(text: t.initialTitle),
+      //   backgroundColor: Color(0xff240F41),
+      //   elevation: 4,
+      //   actions: [
+      //     IconButton(
+      //       icon: const Icon(Icons.settings, color: Colors.white),
+      //       onPressed: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (_) =>
+      //                 const LanguageSelectionScreen(isSettings: true),
+      //           ),
+      //         );
+      //       },
+      //     ),
+      //   ],
+      // ),
       body: Stack(
         children: [
           Positioned.fill(
@@ -87,11 +80,36 @@ class _StoryListScreenState extends State<StoryListScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [TitleCartoon(text: 'Histórias', fontSize: 22)],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 90),
+                      TitleCartoon(text: 'Encantadas', fontSize: 24),
+                      SizedBox(width: 40),
+                      IconButton(
+                        icon: const Icon(Icons.settings, color: Colors.white),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const LanguageSelectionScreen(
+                                isSettings: true,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+
                   const SizedBox(height: 20),
 
                   /// LOGO
-                  TitleCartoon(text: t.initialTitle),
-
+                  // TitleCartoon(text: t.initialTitle),
                   const SizedBox(height: 8),
 
                   /// SUBTÍTULO
@@ -101,7 +119,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.white,
-                      fontWeight: FontWeight.w500,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
 
@@ -193,16 +211,20 @@ class _StoryListScreenState extends State<StoryListScreen> {
                   /// TÍTULO DA SEÇÃO
                   Row(
                     children: [
-                      Icon(Icons.book, color: Colors.white),
-                      SizedBox(width: 8),
-                      Text(
-                        t.choiceHistory,
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                      Icon(
+                        Icons.bookmarks_outlined,
+                        color: const Color.fromARGB(255, 205, 156, 9),
                       ),
+                      SizedBox(width: 8),
+                      TitleCartoon(text: t.choiceHistory, fontSize: 18),
+                      // Text(
+                      //   t.choiceHistory,
+                      //   style: TextStyle(
+                      //     fontSize: 18,
+                      //     fontWeight: FontWeight.bold,
+                      //     color: Colors.white,
+                      //   ),
+                      // ),
                     ],
                   ),
 
