@@ -273,7 +273,13 @@ class _StoryListScreenState extends State<StoryListScreen> {
 
                             final scale = (1 - distance * 0.3).clamp(0.8, 1.0);
 
-                            return Transform.scale(scale: scale, child: child);
+                            return Transform.translate(
+                              offset: Offset(0, distance * 12),
+                              child: Transform.scale(
+                                scale: scale,
+                                child: child,
+                              ),
+                            );
                           },
                           child: GestureDetector(
                             onTap: () {
