@@ -129,116 +129,135 @@ class _StoryListScreenState extends State<StoryListScreen> {
                   const SizedBox(height: 8),
 
                   /// SUBTÍTULO
-                  Text(
-                    t.subtitleHistory,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                      top: 8,
+                      bottom: 0,
+                    ),
+                    child: Text(
+                      t.subtitleHistory,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
 
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 12),
 
                   /// HISTÓRIA DO DIA
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) =>
-                              StoryViewerScreen(storyConfig: dailyStory),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) =>
+                                StoryViewerScreen(storyConfig: dailyStory),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24),
+                          gradient: LinearGradient(
+                            colors: [
+                              // dailyStory.primaryColor.withValues(alpha: 0.7),
+                              // dailyStory.primaryColor,
+                              dailyStory.firstGradient,
+                              dailyStory.secondGradient,
+                              dailyStory.thirdGradient,
+                            ],
+                          ),
                         ),
-                      );
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24),
-                        gradient: LinearGradient(
-                          colors: [
-                            // dailyStory.primaryColor.withValues(alpha: 0.7),
-                            // dailyStory.primaryColor,
-                            dailyStory.firstGradient,
-                            dailyStory.secondGradient,
-                            dailyStory.thirdGradient,
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(18),
+                                child: Image.asset(
+                                  dailyStory.iconPath,
+                                  fit: BoxFit.contain,
+                                  height: 300,
+                                  width: 300,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 16),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    t.historyDay,
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    dailyStory.title,
+                                    style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${dailyStory.pages.length} ${t.page}',
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      color: Colors.white70,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const Icon(
+                              Icons.play_circle_fill,
+                              size: 36,
+                              color: Colors.white,
+                            ),
                           ],
                         ),
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(18),
-                            ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(18),
-                              child: Image.asset(
-                                dailyStory.iconPath,
-                                fit: BoxFit.contain,
-                                height: 300,
-                                width: 300,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  t.historyDay,
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  dailyStory.title,
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Text(
-                                  '${dailyStory.pages.length} ${t.page}',
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    color: Colors.white70,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Icon(
-                            Icons.play_circle_fill,
-                            size: 36,
-                            color: Colors.white,
-                          ),
-                        ],
-                      ),
                     ),
                   ),
 
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 14),
 
                   /// TÍTULO DA SEÇÃO
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.bookmarks_outlined,
-                        color: const Color.fromARGB(255, 205, 156, 9),
-                      ),
-                      SizedBox(width: 8),
-                      TitleCartoon(text: t.choiceHistory, fontSize: 18),
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                      top: 8,
+                      bottom: 8,
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.bookmarks_outlined,
+                          color: const Color.fromARGB(255, 205, 156, 9),
+                        ),
+                        SizedBox(width: 8),
+                        TitleCartoon(text: t.choiceHistory, fontSize: 18),
+                      ],
+                    ),
                   ),
 
                   const SizedBox(height: 20),

@@ -5,6 +5,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:historias_encantadas/providers/locale_provider.dart';
+import 'package:historias_encantadas/widgets/title_cartoon.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
 
@@ -173,6 +174,11 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
     super.dispose();
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
   Future<void> _stopAudio() async {
     _stopMonitoring();
 
@@ -309,15 +315,30 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.storyConfig.title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        title: TitleCartoon(text: widget.storyConfig.title),
+        // Text(
+        //   widget.storyConfig.title,
+        //   style: const TextStyle(
+        //     fontWeight: FontWeight.bold,
+        //     color: Colors.white,
+        //   ),
+        // ),
+        // backgroundColor: widget.storyConfig.primaryColor,
+        backgroundColor: Colors.transparent,
+        elevation: 4,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                widget.storyConfig.primaryColor,
+                widget.storyConfig.secondGradient,
+                widget.storyConfig.thirdGradient,
+              ],
+            ),
           ),
         ),
-        backgroundColor: widget.storyConfig.primaryColor,
-        elevation: 4,
       ),
       body: Column(
         children: [
