@@ -17,14 +17,24 @@ class _StoryListScreenState extends State<StoryListScreen> {
   String? _dailyStoryId;
   final double viewportFraction = 0.70;
   late final PageController _pageController;
+  double _currentPage = 0.0;
 
   @override
   void initState() {
     super.initState();
+
     _pageController = PageController(
       viewportFraction: viewportFraction,
       initialPage: 1000,
     );
+
+    _currentPage = _pageController.initialPage.toDouble();
+
+    _pageController.addListener(() {
+      setState(() {
+        _currentPage = _pageController.page ?? _currentPage;
+      });
+    });
   }
 
   @override
@@ -255,94 +265,101 @@ class _StoryListScreenState extends State<StoryListScreen> {
                         final realIndex = index % stories.length;
                         final story = stories[realIndex];
 
-                        return GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) =>
-                                    StoryViewerScreen(storyConfig: story),
-                              ),
-                            );
+                        return AnimatedBuilder(
+                          animation: _pageController,
+
+                          builder: (context, child) {
+                            final distance = (_currentPage - index).abs();
+
+                            final scale = (1 - distance * 0.3).clamp(0.8, 1.0);
+
+                            return Transform.scale(scale: scale, child: child);
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              left: 0,
-                              right: 20,
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white70,
-                                borderRadius: BorderRadius.circular(24),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.15),
-                                    blurRadius: 8,
-                                    offset: const Offset(0, 4),
-                                  ),
-                                ],
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) =>
+                                      StoryViewerScreen(storyConfig: story),
+                                ),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                top: 8,
+                                bottom: 8,
+                                right: 20,
                               ),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  const SizedBox(height: 12),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white70,
+                                  borderRadius: BorderRadius.circular(24),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withValues(
+                                        alpha: 0.15,
+                                      ),
+                                      blurRadius: 8,
+                                      offset: const Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const SizedBox(height: 12),
 
-                                  /// IMAGEM DA HISTÓRIA
-                                  Expanded(
-                                    flex: 1,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(18),
-                                      child: Image.asset(
-                                        story.getImagePath(
-                                          1,
-                                        ), // imagem da primeira página
-                                        fit: BoxFit.contain,
-                                        errorBuilder: (_, __, ___) =>
-                                            Image.asset(
-                                              story.iconPath,
-                                              fit: BoxFit.contain,
-                                            ),
+                                    /// IMAGEM
+                                    Expanded(
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(18),
+                                        child: Image.asset(
+                                          story.getImagePath(1),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                    const SizedBox(height: 12),
 
-                                  const SizedBox(height: 12),
-
-                                  /// TÍTULO
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                    ),
-                                    child: Text(
-                                      story.title,
-                                      textAlign: TextAlign.center,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF3A2E2E),
+                                    /// TÍTULO
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                      ),
+                                      child: Text(
+                                        story.title,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold,
+                                          color: Color(0xFF3A2E2E),
+                                        ),
                                       ),
                                     ),
-                                  ),
 
-                                  const SizedBox(height: 4),
+                                    const SizedBox(height: 4),
 
-                                  /// PÁGINAS
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 12),
-                                    child: Text(
-                                      '${story.pages.length} ${t.page}',
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        color: Color(0xFF6D5C5C),
+                                    /// PÁGINAS
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                        bottom: 12,
+                                      ),
+                                      child: Text(
+                                        '${story.pages.length} ${t.page}',
+                                        style: const TextStyle(
+                                          fontSize: 13,
+                                          color: Color(0xFF6D5C5C),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+
+                                    const SizedBox(height: 8),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
