@@ -27,6 +27,7 @@ dependencies:
   country_icons: ^3.0.0
   flutter_svg: ^2.2.3
   flutter_launcher_icons: ^0.14.4
+  google_fonts: ^7.1.0
 
 dev_dependencies:
   flutter_test:
@@ -44,6 +45,7 @@ flutter:
   assets:
     - assets/images/back.png
     - assets/images/background.png
+    - assets/images/background2.png
     - assets/images/snowWhite/
     - assets/images/redHat/
     - assets/images/icons/
