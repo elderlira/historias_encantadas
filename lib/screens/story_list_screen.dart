@@ -36,6 +36,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
   Widget build(BuildContext context) {
     final stories = StoryRegistry.getAllStories(context);
     final t = AppLocalizations.of(context)!;
+    final double viewportFraction = 0.70;
 
     final dailyStory = stories.firstWhere(
       (story) => story.storyId == _dailyStoryId,
@@ -77,7 +78,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
           /// CONTEÚDO
           SafeArea(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 0),
               child: Column(
                 children: [
                   Column(
@@ -142,16 +143,19 @@ class _StoryListScreenState extends State<StoryListScreen> {
                         borderRadius: BorderRadius.circular(24),
                         gradient: LinearGradient(
                           colors: [
-                            dailyStory.primaryColor.withValues(alpha: 0.7),
-                            dailyStory.primaryColor,
+                            // dailyStory.primaryColor.withValues(alpha: 0.7),
+                            // dailyStory.primaryColor,
+                            dailyStory.firstGradient,
+                            dailyStory.secondGradient,
+                            dailyStory.thirdGradient,
                           ],
                         ),
                       ),
                       child: Row(
                         children: [
                           Container(
-                            width: 64,
-                            height: 64,
+                            width: 100,
+                            height: 100,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(18),
@@ -161,6 +165,8 @@ class _StoryListScreenState extends State<StoryListScreen> {
                               child: Image.asset(
                                 dailyStory.iconPath,
                                 fit: BoxFit.contain,
+                                height: 300,
+                                width: 300,
                               ),
                             ),
                           ),
@@ -206,7 +212,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 30),
 
                   /// TÍTULO DA SEÇÃO
                   Row(
@@ -217,22 +223,15 @@ class _StoryListScreenState extends State<StoryListScreen> {
                       ),
                       SizedBox(width: 8),
                       TitleCartoon(text: t.choiceHistory, fontSize: 18),
-                      // Text(
-                      //   t.choiceHistory,
-                      //   style: TextStyle(
-                      //     fontSize: 18,
-                      //     fontWeight: FontWeight.bold,
-                      //     color: Colors.white,
-                      //   ),
-                      // ),
                     ],
                   ),
 
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
 
                   /// CARROSSEL
                   Container(
                     height: 280,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24),
                       gradient: LinearGradient(
@@ -245,9 +244,19 @@ class _StoryListScreenState extends State<StoryListScreen> {
                       ),
                     ),
                     child: PageView.builder(
-                      controller: PageController(viewportFraction: 0.70),
-                      itemCount: stories.length,
+                      controller: PageController(
+                        viewportFraction: viewportFraction,
+                      ),
+                      padEnds: true,
+                      // itemCount: stories.length + 1,
                       itemBuilder: (context, index) {
+                        if (index == stories.length) {
+                          return SizedBox(
+                            width:
+                                MediaQuery.of(context).size.width *
+                                viewportFraction,
+                          );
+                        }
                         final story = stories[index];
 
                         return GestureDetector(
@@ -261,9 +270,11 @@ class _StoryListScreenState extends State<StoryListScreen> {
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 8,
+                            padding: const EdgeInsets.only(
+                              left: 0,
+                              right: 10,
+                              top: 8,
+                              bottom: 8,
                             ),
                             child: Container(
                               decoration: BoxDecoration(

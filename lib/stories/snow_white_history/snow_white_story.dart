@@ -18,6 +18,9 @@ class SnowWhiteStory {
       storyId: data.historyId,
       primaryColor: Colors.blueAccent.shade400,
       accentColor: Colors.blueAccent.shade700,
+      firstGradient: Color(0xFF2E6BA8),
+      secondGradient: Color(0xFF3173AB),
+      thirdGradient: Color(0xFF32468A),
       audioBasePath: 'sounds/$langCode/${data.historyId}',
       imageBasePath: 'assets/images/${data.historyId}',
       pages: List.generate(

@@ -18,6 +18,9 @@ class RedHatStory {
       storyId: data.historyId,
       primaryColor: Colors.red.shade600,
       accentColor: Colors.red.shade700,
+      firstGradient: Colors.red.shade600,
+      secondGradient: Color(0xFFCA2534),
+      thirdGradient: Color(0xFF7C2B1D),
       audioBasePath: 'sounds/$langCode/${data.historyId}',
       imageBasePath: 'assets/images/${data.historyId}',
       pages: List.generate(

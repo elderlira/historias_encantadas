@@ -8,6 +8,9 @@ class StoryConfig {
   final List<StoryPage> pages;
   final Color primaryColor;
   final Color accentColor;
+  final Color firstGradient;
+  final Color secondGradient;
+  final Color thirdGradient;
   final String audioBasePath;
   final String imageBasePath;
 
@@ -17,6 +20,9 @@ class StoryConfig {
     required this.pages,
     required this.primaryColor,
     required this.accentColor,
+    required this.firstGradient,
+    required this.secondGradient,
+    required this.thirdGradient,
     required this.audioBasePath,
     required this.imageBasePath,
   });
