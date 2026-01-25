@@ -29,7 +29,7 @@ class TitleCartoon extends StatelessWidget {
               Shadow(
                 offset: const Offset(0, 8),
                 blurRadius: 12.0,
-                color: Colors.black.withOpacity(0.5),
+                color: Colors.black.withValues(alpha: 0.5),
               ),
             ],
           ),

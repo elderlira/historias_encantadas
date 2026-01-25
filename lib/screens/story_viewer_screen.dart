@@ -315,7 +315,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TitleCartoon(text: widget.storyConfig.title),
+        title: TitleCartoon(text: widget.storyConfig.title, fontSize: 16),
         // Text(
         //   widget.storyConfig.title,
         //   style: const TextStyle(

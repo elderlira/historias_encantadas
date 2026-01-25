@@ -57,6 +57,23 @@ class _StoryListScreenState extends State<StoryListScreen> {
       (story) => story.storyId == _dailyStoryId,
     );
 
+    List<String> initialTitleSepareted = t.initialTitle.split(' ');
+    final String firstInitialTitle = initialTitleSepareted[0];
+    String secondInitialTitle = initialTitleSepareted.length > 1
+        ? initialTitleSepareted[1]
+        : '';
+
+    // String verifySecondInitialTitle(String text) {
+    //   if (text == firstInitialTitle) {
+    //     return secondInitialTitle = '';
+    //   }
+    //   if (initialTitleSepareted.length > 1) {
+    //     secondInitialTitle = initialTitleSepareted[1];
+    //     return secondInitialTitle;
+    //   }
+    //   return '';
+    // }
+
     return Scaffold(
       // appBar: AppBar(
       //   title: TitleCartoon(text: t.initialTitle),
@@ -96,15 +113,18 @@ class _StoryListScreenState extends State<StoryListScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 0),
               child: Column(
                 children: [
+                  SizedBox(height: 20),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [TitleCartoon(text: 'Histórias', fontSize: 22)],
+                    children: [
+                      TitleCartoon(text: firstInitialTitle, fontSize: 22),
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(width: 90),
-                      TitleCartoon(text: 'Encantadas', fontSize: 24),
+                      TitleCartoon(text: secondInitialTitle, fontSize: 24),
                       SizedBox(width: 40),
                       IconButton(
                         icon: const Icon(Icons.settings, color: Colors.white),

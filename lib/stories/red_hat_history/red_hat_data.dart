@@ -55,11 +55,11 @@ class RedHatData implements StoryData {
     }),
     LocalizedText({
       'pt': """
-            De repente, no meio do caminho ela ouviu um ruído vindo da mata fora da trilha, ao olhar melhor viu um lobo gigante a observando.
-            O lobo perguntou: "o que uma menina como ela estava fazendo sozinha na floresta ?".
-            Chapeuzinho esquecendo o conselho da sua mãe, respondeu ao lobo: "estou indo na casa da vovó entregar umas frutas para ela que está muito doente".
-            O lobo já pensando na próxima refeição, perguntou: "onde a vovó da Chapeuzinho morava ?".
-            Ela desconfiou das intenções do lobo e resolveu não contar onde a vovó morava e esperou o lobo se afastar, mas ela não percebeu que o lobo estava-a vigiando caminhar pela floresta e acabou chegando antes na casa da vovó.
+            De repente, no meio do caminho ela ouviu um ruído vindo da mata fora da trilha, ao olhar melhor viu um Lobo gigante a observando.
+            O Lobo perguntou: "O que uma menina como ela estava fazendo sozinha na floresta ?".
+            Chapeuzinho esquecendo o conselho da sua mãe, respondeu: "estou indo na casa da vovó entregar umas frutas para ela que está muito doente".
+            O Lobo já pensando na próxima refeição, perguntou: "Onde a vovó da Chapeuzinho morava ?".
+            Ela desconfiou das intenções do Lobo e resolveu não contar onde a vovó morava e esperou ele se afastar, mas ela não percebeu que o Lobo estava-a vigiando caminhar pela floresta.
           """,
       'en':
           'One day, her mother asked her to take this basket of fruit and cake to Grandma, who was ill and lived on the other side of the forest. Her mother told her to follow the trail and never talk to strangers, because a very bad wolf lived in the forest.',
@@ -72,7 +72,7 @@ class RedHatData implements StoryData {
     }),
     LocalizedText({
       'pt':
-          'Ela se distraiu com os passarinhos na floresta e o lobo aproveitou a distração dela para chegar na casa da vovó.',
+          'Ela se distraiu com os passarinhos na floresta e o Lobo aproveitou a distração dela para chegar na casa da vovó.',
       'en':
           'One day, her mother asked her to take this basket of fruit and cake to Grandma, who was ill and lived on the other side of the forest. Her mother told her to follow the trail and never talk to strangers, because a very bad wolf lived in the forest.',
       'es':
@@ -108,7 +108,7 @@ class RedHatData implements StoryData {
     }),
     LocalizedText({
       'pt':
-          'Finalmente Chapeuzinho chegou, ela encontrou a porta aberta e entrou sem desconfiar de nada. Foi para o quarto da vovó, que estava muito escuro, e chamou por ela. “Bom dia vovó!',
+          'Finalmente, chapeuzinho chegou, ela encontrou a porta aberta e entrou sem desconfiar de nada. Foi para o quarto da vovó, que estava muito escuro, e chamou por ela. “Bom dia vovó!',
       'en':
           'One day, her mother asked her to take this basket of fruit and cake to Grandma, who was ill and lived on the other side of the forest. Her mother told her to follow the trail and never talk to strangers, because a very bad wolf lived in the forest.',
       'es':
