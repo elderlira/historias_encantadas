@@ -22,12 +22,12 @@ class RedHatData implements StoryData {
       'pt':
           'Era uma vez uma menina muito esperta que morava em uma casa na floresta com sua mãe, ela sempre usava um capuz vermelho e todos a conheciam como Chapeuzinho Vermelho',
       'en':
-          'Once upon a time, there was a girl who was much loved by everyone, especially by her grandmother. She always wore a beautiful red velvet hood that she had received from her grandmother, which is why she was called Little Red Riding Hood.',
+          'Once upon a time, there was a very clever girl who lived in a house in the forest with her mother. She always wore a red hood, and everyone knew her as Little Red Riding Hood.',
       'es':
-          'Érase una vez una niña muy querida por todos, especialmente por su abuela. Siempre llevaba una hermosa capucha de terciopelo rojo que le había regalado su abuela, por eso la llamaban Caperucita Roja.',
+          'Érase una vez una niña muy lista que vivía en una casa en el bosque con su madre. Siempre llevaba una capucha roja, y todos la conocían como Caperucita Roja.',
       'fr':
-          "Il était une fois une petite fille adorée de tous, et surtout de sa grand-mère. Elle portait toujours un magnifique capuchon de velours rouge que sa grand-mère lui avait offert, d'où son surnom de Petit Chaperon rouge.",
-      'zh': '從前，有一個女孩，人人都喜歡她，尤其是她的祖母。她總是戴著祖母送給她的一頂漂亮的紅色天鵝絨帽子，因此她被稱為小紅帽。',
+          "Il était une fois une petite fille qui, comme on l'imaginait, vivait dans une maison au cœur de la forêt avec sa mère. Elle portait toujours un capuchon rouge et tout le monde la connaissait sous le nom de Chapeau Rouge.",
+      'zh': '從前，有一個女孩非常希望和她的母親住在森林裡的房子裡，她總是戴著紅色的兜帽，大家都稱她為紅帽子。',
     }),
     LocalizedText({
       'pt':
@@ -35,11 +35,11 @@ class RedHatData implements StoryData {
       'en':
           'One day, her mother asked her to take this basket of fruit and cake to Grandma, who was ill and lived on the other side of the forest. Her mother told her to follow the trail and never talk to strangers, because a very bad wolf lived in the forest.',
       'es':
-          'Un día, su madre le pidió que le llevara la cesta de fruta y pastel a su abuela, que estaba enferma y vivía al otro lado del bosque. Su madre le dijo que siguiera el rastro y nunca hablara con desconocidos, porque un lobo muy feroz vivía en el bosque.',
+          'Un día, su madre le pidió que le llevara una cesta de fruta a su abuela, que estaba enferma y vivía al otro lado del bosque. Su madre le dijo que siguiera el sendero y nunca hablara con desconocidos, porque un lobo muy feroz vivía en el bosque.',
       'fr':
-          "Un jour, sa mère lui demanda d'apporter un panier de fruits et de gâteaux à sa grand-mère, qui était malade et vivait de l'autre côté de la forêt. Sa mère lui dit de suivre le sentier et de ne jamais parler aux étrangers, car un loup très méchant vivait dans la forêt.",
+          "Un jour, sa mère lui demanda d'apporter un panier de fruits à sa grand-mère, qui était malade et vivait de l'autre côté de la forêt. Sa mère lui dit de suivre le sentier et de ne jamais parler aux étrangers, car un loup très méchant vivait dans la forêt.",
       'zh':
-          "有一天，媽媽請她把這籃水果和蛋糕送到生病的奶奶家，奶奶住在森林的另一邊。媽媽告訴她要沿著小路走，不要跟陌生人說話，因為森林裡住著一隻非常兇惡的狼。",
+          "有一天，媽媽要她帶一籃水果去探望生病的奶奶，奶奶住在森林的另一邊。媽媽叮嚀她沿著林間小路走，不要跟陌生人說話，因為森林裡住著一隻非常兇惡的狼。",
     }),
     LocalizedText({
       'pt':

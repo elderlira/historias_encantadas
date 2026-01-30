@@ -26,16 +26,16 @@ class StoryPageWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(
-            "Página ${page.pageNumber}",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 16),
+          // Text(
+          //   "Página ${page.pageNumber}",
+          //   textAlign: TextAlign.center,
+          //   style: TextStyle(
+          //     fontSize: 18,
+          //     fontWeight: FontWeight.bold,
+          //     color: Colors.white,
+          //   ),
+          // ),
+          // const SizedBox(height: 16),
           Stack(
             alignment: Alignment.topRight,
             children: [
