@@ -20,7 +20,7 @@ class ThreeLittlePigsData implements StoryData {
   List<LocalizedText> get pages => [
     LocalizedText({
       'pt':
-          'Era uma vez, três porquinhos irmãos que decidiram construir suas próprias casas.',
+          "Era uma vez, em uma grande floresta, na casa da mamãe, viviam felizes os três porquinhos.",
       'en':
           'Once upon a time, there was a girl who was much loved by everyone, especially by her grandmother. She always wore a beautiful red velvet hood that she had received from her grandmother, which is why she was called Little Red Riding Hood.',
       'es':
@@ -28,6 +28,18 @@ class ThreeLittlePigsData implements StoryData {
       'fr':
           "Il était une fois une petite fille adorée de tous, et surtout de sa grand-mère. Elle portait toujours un magnifique capuchon de velours rouge que sa grand-mère lui avait offert, d'où son surnom de Petit Chaperon rouge.",
       'zh': '從前，有一個女孩，人人都喜歡她，尤其是她的祖母。她總是戴著祖母送給她的一頂漂亮的紅色天鵝絨帽子，因此她被稱為小紅帽。',
+    }),
+    LocalizedText({
+      'pt':
+          'Um dia, quando estavam bem crescidos resolveram partir pela floresta a procura de um bom lugar para cada um construir sua própria casa.',
+      'en':
+          'One day, her mother asked her to take this basket of fruit and cake to Grandma, who was ill and lived on the other side of the forest. Her mother told her to follow the trail and never talk to strangers, because a very bad wolf lived in the forest.',
+      'es':
+          'Un día, su madre le pidió que le llevara la cesta de fruta y pastel a su abuela, que estaba enferma y vivía al otro lado del bosque. Su madre le dijo que siguiera el rastro y nunca hablara con desconocidos, porque un lobo muy feroz vivía en el bosque.',
+      'fr':
+          "Un jour, sa mère lui demanda d'apporter un panier de fruits et de gâteaux à sa grand-mère, qui était malade et vivait de l'autre côté de la forêt. Sa mère lui dit de suivre le sentier et de ne jamais parler aux étrangers, car un loup très méchant vivait dans la forêt.",
+      'zh':
+          "有一天，媽媽請她把這籃水果和蛋糕送到生病的奶奶家，奶奶住在森林的另一邊。媽媽告訴她要沿著小路走，不要跟陌生人說話，因為森林裡住著一隻非常兇惡的狼。",
     }),
     LocalizedText({
       'pt':
@@ -67,7 +79,7 @@ class ThreeLittlePigsData implements StoryData {
     }),
     LocalizedText({
       'pt':
-          'Os três porquinhos estavam felizes em suas casas novas. Mas, na floresta, vivia o Lobo Mau.',
+          'Os três porquinhos estavam felizes em suas casas novas. Mas, na floresta, vivia o Lobo Mau. ',
       'en':
           'One day, her mother asked her to take this basket of fruit and cake to Grandma, who was ill and lived on the other side of the forest. Her mother told her to follow the trail and never talk to strangers, because a very bad wolf lived in the forest.',
       'es':
@@ -79,19 +91,7 @@ class ThreeLittlePigsData implements StoryData {
     }),
     LocalizedText({
       'pt':
-          'O Lobo Mau chegou primeiro na casa de palha de Cícero. Ele bateu na porta.',
-      'en':
-          'One day, her mother asked her to take this basket of fruit and cake to Grandma, who was ill and lived on the other side of the forest. Her mother told her to follow the trail and never talk to strangers, because a very bad wolf lived in the forest.',
-      'es':
-          'Un día, su madre le pidió que le llevara la cesta de fruta y pastel a su abuela, que estaba enferma y vivía al otro lado del bosque. Su madre le dijo que siguiera el rastro y nunca hablara con desconocidos, porque un lobo muy feroz vivía en el bosque.',
-      'fr':
-          "Un jour, sa mère lui demanda d'apporter un panier de fruits et de gâteaux à sa grand-mère, qui était malade et vivait de l'autre côté de la forêt. Sa mère lui dit de suivre le sentier et de ne jamais parler aux étrangers, car un loup très méchant vivait dans la forêt.",
-      'zh':
-          "有一天，媽媽請她把這籃水果和蛋糕送到生病的奶奶家，奶奶住在森林的另一邊。媽媽告訴她要沿著小路走，不要跟陌生人說話，因為森林裡住著一隻非常兇惡的狼。",
-    }),
-    LocalizedText({
-      'pt':
-          'Abra a porta! Se não abrir, eu vou soprar e a sua casa vou derrubar!" O lobo encheu os pulmões e... PFFFF! ',
+          'O Lobo Mau chegou primeiro na casa de palha de Cícero. Ele bateu na porta. Abra a porta! Se não abrir, eu vou soprar e a sua casa vou derrubar!" O lobo encheu os pulmões e... PFFFF! ',
       'en':
           'One day, her mother asked her to take this basket of fruit and cake to Grandma, who was ill and lived on the other side of the forest. Her mother told her to follow the trail and never talk to strangers, because a very bad wolf lived in the forest.',
       'es':
@@ -151,7 +151,7 @@ class ThreeLittlePigsData implements StoryData {
     }),
     LocalizedText({
       'pt':
-          'Agora, os três irmãos estavam juntos na casa de tijolos de Prático. "Podem vir, seu lobo bobo! ',
+          'Agora, os três irmãos estavam juntos na casa de tijolos de Prático. "Pode vir, seu lobo bobo! ',
       'en':
           'One day, her mother asked her to take this basket of fruit and cake to Grandma, who was ill and lived on the other side of the forest. Her mother told her to follow the trail and never talk to strangers, because a very bad wolf lived in the forest.',
       'es':
