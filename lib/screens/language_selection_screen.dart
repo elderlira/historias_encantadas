@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:historias_encantadas/widgets/title_cartoon.dart';
 import 'package:provider/provider.dart';
 
 import '../database/app_database.dart';
@@ -57,116 +57,98 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
     final t = AppLocalizations.of(context)!;
 
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              t.selectLanguage,
-              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-            ),
-
-            const SizedBox(height: 32),
-
-            Wrap(
-              alignment: WrapAlignment.center,
-              spacing: 14,
-              runSpacing: 10,
-              children: [
-                LanguageFlag(
-                  languageCode: 'pt',
-                  countryCode: 'br',
-                  selectedLang: _selectedLang,
-                  onTap: () => _selectLanguage('pt'),
-                ),
-                LanguageFlag(
-                  languageCode: 'en',
-                  countryCode: 'us',
-                  selectedLang: _selectedLang,
-                  onTap: () => _selectLanguage('en'),
-                ),
-                LanguageFlag(
-                  languageCode: 'fr',
-                  countryCode: 'fr',
-                  selectedLang: _selectedLang,
-                  onTap: () => _selectLanguage('fr'),
-                ),
-                LanguageFlag(
-                  languageCode: 'es',
-                  countryCode: 'es',
-                  selectedLang: _selectedLang,
-                  onTap: () => _selectLanguage('es'),
-                ),
-                LanguageFlag(
-                  languageCode: 'zh',
-                  countryCode: 'cn',
-                  selectedLang: _selectedLang,
-                  onTap: () => _selectLanguage('zh'),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 40),
-
-            Wrap(
-              alignment: WrapAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: _save,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 38,
-                      vertical: 16,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: Text(t.save, style: const TextStyle(fontSize: 18)),
-                ),
-                SizedBox(width: 10),
-                ElevatedButton(
-                  onPressed: _return,
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 38,
-                      vertical: 16,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: Text(t.cancel, style: const TextStyle(fontSize: 18)),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _flag(String lang, String country) {
-    final selected = _selectedLang == lang;
-
-    return GestureDetector(
-      onTap: () => _selectLanguage(lang),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(6),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: BoxDecoration(
-          border: Border.all(
-            color: selected ? Colors.purple : Colors.transparent,
-            width: 3,
+          image: DecorationImage(
+            image: AssetImage("assets/images/background2.png"),
+            fit: BoxFit.cover,
           ),
-          borderRadius: BorderRadius.circular(14),
         ),
-        child: SvgPicture.asset(
-          'assets/flags/$country.svg',
-          width: 30,
-          height: 30,
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TitleCartoon(text: t.selectLanguage),
+
+              const SizedBox(height: 32),
+
+              Wrap(
+                alignment: WrapAlignment.center,
+                spacing: 14,
+                runSpacing: 10,
+                children: [
+                  LanguageFlag(
+                    languageCode: 'pt',
+                    countryCode: 'br',
+                    selectedLang: _selectedLang,
+                    onTap: () => _selectLanguage('pt'),
+                  ),
+                  LanguageFlag(
+                    languageCode: 'en',
+                    countryCode: 'us',
+                    selectedLang: _selectedLang,
+                    onTap: () => _selectLanguage('en'),
+                  ),
+                  LanguageFlag(
+                    languageCode: 'fr',
+                    countryCode: 'fr',
+                    selectedLang: _selectedLang,
+                    onTap: () => _selectLanguage('fr'),
+                  ),
+                  LanguageFlag(
+                    languageCode: 'es',
+                    countryCode: 'es',
+                    selectedLang: _selectedLang,
+                    onTap: () => _selectLanguage('es'),
+                  ),
+                  LanguageFlag(
+                    languageCode: 'zh',
+                    countryCode: 'cn',
+                    selectedLang: _selectedLang,
+                    onTap: () => _selectLanguage('zh'),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 40),
+
+              Wrap(
+                alignment: WrapAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: _save,
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 38,
+                        vertical: 16,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: Text(t.save, style: const TextStyle(fontSize: 18)),
+                  ),
+                  SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: _return,
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 38,
+                        vertical: 16,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    child: Text(t.cancel, style: const TextStyle(fontSize: 18)),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

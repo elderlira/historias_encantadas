@@ -26,7 +26,7 @@ class LanguageFlag extends StatelessWidget {
         padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
           border: Border.all(
-            color: isSelected ? Colors.purple : Colors.transparent,
+            color: isSelected ? const Color(0xffFFD700) : Colors.transparent,
             width: 3,
           ),
           borderRadius: BorderRadius.circular(14),
