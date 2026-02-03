@@ -20,7 +20,7 @@ class ThreeLittlePigsData implements StoryData {
   List<LocalizedText> get pages => [
     LocalizedText({
       'pt':
-          "Era uma vez, em uma grande floresta, na casa da mamãe, viviam felizes os três porquinhos.",
+          "Era uma vez, em uma grande floresta, na casa da mamãe, viviam felizes os três porquinhos. Cícero, Heitor e Prático",
       'en':
           'Once upon a time, there was a girl who was much loved by everyone, especially by her grandmother. She always wore a beautiful red velvet hood that she had received from her grandmother, which is why she was called Little Red Riding Hood.',
       'es':
@@ -187,7 +187,7 @@ class ThreeLittlePigsData implements StoryData {
     }),
     LocalizedText({
       'pt':
-          'O Lobo Mau teve uma ideia: ele subiria na chaminé! Mas o Porquinho Prático estava esperando por ele.',
+          'O Lobo Mau teve uma ideia: iria esperar chegar a noite e subiria na chaminé! Mas o Porquinho Prático estava esperando por ele e colocou um caldeirao de água quente próxima a chaminé',
       'es':
           'Un día, su madre le pidió que le llevara la cesta de fruta y pastel a su abuela, que estaba enferma y vivía al otro lado del bosque. Su madre le dijo que siguiera el rastro y nunca hablara con desconocidos, porque un lobo muy feroz vivía en el bosque.',
       'fr':
@@ -197,7 +197,7 @@ class ThreeLittlePigsData implements StoryData {
     }),
     LocalizedText({
       'pt':
-          'O lobo escorregou pela chaminé e CAIU direto no caldeirão de água quente!',
+          'O lobo ao entrar pela chaminé escorregou e CAIU direto no caldeirão de água quente!',
       'es':
           'Un día, su madre le pidió que le llevara la cesta de fruta y pastel a su abuela, que estaba enferma y vivía al otro lado del bosque. Su madre le dijo que siguiera el rastro y nunca hablara con desconocidos, porque un lobo muy feroz vivía en el bosque.',
       'fr':
