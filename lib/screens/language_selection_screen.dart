@@ -29,11 +29,12 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
 
   void _selectLanguage(String code) {
     setState(() => _selectedLang = code);
-    context.read<LocaleProvider>().setLocale(code);
   }
 
   Future<void> _save() async {
     await AppDatabase.saveLanguage(_selectedLang);
+
+    context.read<LocaleProvider>().setLocale(_selectedLang);
 
     if (widget.isSettings) {
       Navigator.pop(context);
@@ -45,11 +46,8 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
     }
   }
 
-  Future<void> _return() async {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => const StoryListScreen()),
-    );
+  void _return() {
+    Navigator.pop(context, true);
   }
 
   @override
