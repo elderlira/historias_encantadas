@@ -211,7 +211,7 @@ Little Red Riding Hood learned the lesson of never talking to strangers, always 
     }),
     LocalizedText({
       'pt': 'Te aguardo novamente. Até logo.',
-      'en': """"
+      'en': """
             I'll be waiting for you again. See you soon.
             """,
       'es': 'Te estaré esperando de nuevo. Nos vemos pronto.',
