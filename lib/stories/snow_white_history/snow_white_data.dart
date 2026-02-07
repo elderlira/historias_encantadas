@@ -50,46 +50,30 @@ class SnowWhiteData implements StoryData {
             — Não, minha rainha. És a mais bela de todas.""",
       'en':
           """Snow White grew up and became more beautiful each day. She felt very lonely in the castle and spent her days singing to cheer herself up.
-
           And the Queen always asked the magic mirror:
-
           "Mirror, mirror on the wall, who is the fairest of them all?"
-
           And the mirror always replied:
-
           "You are the fairest of them all, my queen."
           """,
       'es': """
           Blancanieves creció y cada día se volvía más hermosa. Se sentía muy sola en el castillo y se pasaba los días cantando para animarse.
-
           Y la Reina siempre le preguntaba al espejo mágico:
-
           "Espejito, espejito, ¿quién es la más bella de todas?"
-
           Y el espejo siempre respondía:
-
           "Eres la más bella de todas, mi reina".
           """,
       'fr': """
         Blanche-Neige grandit et devint chaque jour plus belle. Se sentant très seule au château, elle passait ses journées à chanter pour se remonter le moral.
-
         Et la Reine demandait toujours au miroir magique :
-
         « Miroir, miroir, qui est la plus belle de toutes ? »
-
         Et le miroir répondait toujours :
-
         « C'est vous la plus belle de toutes, ma reine. »
         """,
       'zh': """
           白雪公主漸漸長大，一天比一天美麗。她獨自待在城堡裡，感到非常孤獨，於是整天唱歌來排解寂寞。
-
           王后總是問魔鏡：
-
           “魔鏡魔鏡告訴我，誰是世界上最美麗的女人？”
-
           魔鏡總是回答：
-
           “您是世界上最美麗的女人，我的王后。”
           """,
     }),
