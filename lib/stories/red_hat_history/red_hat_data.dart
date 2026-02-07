@@ -76,24 +76,16 @@ class RedHatData implements StoryData {
             """,
       'fr': """
             Soudain, au milieu du chemin, elle entendit un bruit venant des bois, à l'écart du sentier. En s'approchant, elle aperçut un loup gigantesque qui l'observait.
-
             Le loup demanda : « Que fais-tu, une petite fille comme toi, seule dans la forêt ? »
-
             Le Petit Chaperon rouge, oubliant les conseils de sa mère, répondit : « Je vais chez grand-mère lui apporter des fruits ; elle est très malade. »
-
             Le loup, déjà en train de penser à son prochain repas, demanda : « Où habite la grand-mère du Petit Chaperon rouge ? »
-
             Elle se douta des intentions du loup et décida de ne pas lui dire où habitait sa grand-mère, attendant qu'il s'éloigne. Mais elle ne se rendait pas compte que le loup l'observait traverser la forêt.
             """,
       'zh': """"
             突然，走到小路中間，她聽到小路旁的樹林傳來一陣聲響。她循聲望去，發現一隻巨狼正盯著她。
-
             狼問道：“像她這樣的小女孩怎麼會獨自一人在森林裡？”
-
             小紅帽忘記了媽媽的叮囑，回答說：“我要去奶奶家給她送些水果，她病得很重。”
-
             狼已經開始盤算著下一頓美餐了，問道：“小紅帽的奶奶住在哪裡？”
-
             她察覺到狼的意圖，決定不告訴他奶奶的住址，等他走開。但她沒有意識到，狼正注視著她穿過森林。
             """,
     }),
@@ -160,30 +152,22 @@ class RedHatData implements StoryData {
           """,
       'en': """
           The wolf replied in a hoarse voice: “They’re to hear you better, my little granddaughter.” Little Red Riding Hood continued:
-
           “Grandma, what big eyes you have!” And the wolf replied: “They’re to see you better, my little granddaughter.”
-
           And once again Little Red Riding Hood said: “Grandma, what a huge mouth you have!” And the wolf shouted: “IT’S TO EAT YOU!!!”
           """,
       'es': """ 
           El lobo respondió con voz ronca: «Son para oírte mejor, nietecita». Caperucita Roja continuó:
-
         «¡Abuela, qué ojos tan grandes tienes!». Y el lobo respondió: «Son para verte mejor, nietecita».
-
         Y una vez más Caperucita Roja dijo: «¡Abuela, qué boca tan grande tienes!». Y el lobo gritó: «¡¡¡ES PARA COMERTE!!!».
                   """,
       'fr': """ 
           Le loup répondit d'une voix rauque : « C'est pour mieux t'entendre, ma petite-fille. » Le Petit Chaperon rouge poursuivit :
-
           « Grand-mère, que vous avez de grands yeux ! » Et le loup répondit : « C'est pour mieux te voir, ma petite-fille. »
-
           Et une fois de plus, le Petit Chaperon rouge dit : « Grand-mère, que vous avez une grande bouche ! » Et le loup cria : « C'EST POUR TE MANGER !!! »
           """,
       'zh': """
             狼用沙啞的聲音回答說：「是為了更好地聽你說話，我的小孫女。」小紅帽繼續說：
-
             “奶奶，你的眼睛好大啊！”狼回答說：“是為了更好地看清你，我的小孫女。”
-
             小紅帽又說：“奶奶，你的嘴巴好大啊！”狼大喊道：“是為了吃掉你！！！”
             """,
     }),
