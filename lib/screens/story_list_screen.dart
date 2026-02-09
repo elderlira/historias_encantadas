@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:historias_encantadas/models/story_config.dart';
+import 'package:historias_encantadas/providers/subscription_provider.dart';
 import 'package:historias_encantadas/screens/language_selection_screen.dart';
+import 'package:historias_encantadas/screens/subscription_page.dart';
 import 'package:historias_encantadas/widgets/title_cartoon.dart';
+import 'package:provider/provider.dart';
 
 import '../l10n/app_localizations.dart';
 import '../stories/story_registry.dart';
@@ -52,6 +56,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
   Widget build(BuildContext context) {
     final stories = StoryRegistry.getAllStories(context);
     final t = AppLocalizations.of(context)!;
+    final subscription = context.watch<SubscriptionProvider>();
 
     final dailyStory = stories.firstWhere(
       (story) => story.storyId == _dailyStoryId,
@@ -62,6 +67,30 @@ class _StoryListScreenState extends State<StoryListScreen> {
     String secondInitialTitle = initialTitleSepareted.length > 1
         ? initialTitleSepareted[1]
         : '';
+
+    void openStory(StoryConfig story) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => StoryViewerScreen(storyConfig: story),
+        ),
+      );
+    }
+
+    void subscriptionFalse() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => const SubscriptionPage()),
+      );
+    }
+
+    void storyTap(StoryConfig story) {
+      if (subscription.isSubscribed) {
+        openStory(story);
+      } else {
+        subscriptionFalse();
+      }
+    }
 
     // String verifySecondInitialTitle(String text) {
     //   if (text == firstInitialTitle) {
@@ -173,15 +202,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) =>
-                                StoryViewerScreen(storyConfig: dailyStory),
-                          ),
-                        );
-                      },
+                      onTap: () => storyTap(dailyStory),
                       child: Container(
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
@@ -321,15 +342,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
                             );
                           },
                           child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) =>
-                                      StoryViewerScreen(storyConfig: story),
-                                ),
-                              );
-                            },
+                            onTap: () => storyTap(story),
                             child: Padding(
                               padding: const EdgeInsets.only(
                                 top: 8,

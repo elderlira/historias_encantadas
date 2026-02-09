@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:historias_encantadas/providers/subscription_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'database/app_database.dart';
@@ -13,14 +14,19 @@ void main() async {
 
   final savedLang = await AppDatabase.getLanguage();
   final localeProvider = LocaleProvider();
+  final subscriptionProvider = SubscriptionProvider();
+  await subscriptionProvider.init();
 
   if (savedLang != null) {
     localeProvider.setLocale(savedLang);
   }
 
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => localeProvider,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => localeProvider),
+        ChangeNotifierProvider(create: (_) => subscriptionProvider),
+      ],
       child: MyApp(isFirstAccess: savedLang == null),
     ),
   );
