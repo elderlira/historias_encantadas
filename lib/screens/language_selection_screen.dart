@@ -57,7 +57,7 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
-    print(context.read<LocaleProvider>());
+    var width = MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Container(
@@ -74,9 +74,12 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TitleCartoon(text: t.selectLanguage),
+              TitleCartoon(
+                text: t.selectLanguage,
+                fontSize: width >= 600 ? 30 : 22,
+              ),
 
-              const SizedBox(height: 32),
+              SizedBox(height: width >= 600 ? 50 : 32),
 
               Wrap(
                 alignment: WrapAlignment.center,

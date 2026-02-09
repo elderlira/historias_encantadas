@@ -18,6 +18,7 @@ class LanguageFlag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSelected = languageCode == selectedLang;
+    var width = MediaQuery.of(context).size.width;
 
     return GestureDetector(
       onTap: onTap,
@@ -33,8 +34,8 @@ class LanguageFlag extends StatelessWidget {
         ),
         child: SvgPicture.asset(
           'assets/flags/$countryCode.svg',
-          width: 48,
-          height: 40,
+          width: width >= 600 ? 70 : 48,
+          height: width > 600 ? 62 : 40,
         ),
       ),
     );
