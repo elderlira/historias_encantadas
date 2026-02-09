@@ -20,15 +20,18 @@ class LanguageSelectionScreen extends StatefulWidget {
 
 class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   late String _selectedLang;
+  late String _initialLang;
 
   @override
   void initState() {
     super.initState();
-    _selectedLang = context.read<LocaleProvider>().locale.languageCode;
+    final currentLang = context.read<LocaleProvider>().locale.languageCode;
+    _selectedLang = _initialLang = currentLang;
   }
 
   void _selectLanguage(String code) {
     setState(() => _selectedLang = code);
+    context.read<LocaleProvider>().setLocale(code);
   }
 
   Future<void> _save() async {
@@ -47,12 +50,14 @@ class _LanguageSelectionScreenState extends State<LanguageSelectionScreen> {
   }
 
   void _return() {
+    context.read<LocaleProvider>().setLocale(_initialLang);
     Navigator.pop(context, true);
   }
 
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
+    print(context.read<LocaleProvider>());
 
     return Scaffold(
       body: Container(

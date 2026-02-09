@@ -43,7 +43,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get historyDay => 'story of the day';
 
   @override
-  String get choiceHistory => 'Choose a history';
+  String get choiceHistory => 'Selection a history';
 
   @override
   String get initialTitle => 'Enchanted Stories';

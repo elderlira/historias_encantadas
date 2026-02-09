@@ -13,7 +13,7 @@ class TitleCartoon extends StatelessWidget {
     final baseStyle = GoogleFonts.cinzelDecorative(
       fontSize: fontSize,
       fontWeight: FontWeight.bold,
-      letterSpacing: 1.2,
+      letterSpacing: 5,
     );
 
     return Stack(
@@ -42,7 +42,7 @@ class TitleCartoon extends StatelessWidget {
           style: baseStyle.copyWith(
             foreground: Paint()
               ..style = PaintingStyle.stroke
-              ..strokeWidth = 8
+              ..strokeWidth = 6
               ..strokeJoin = StrokeJoin.round
               ..color = const Color(0xFF633D0D), // Marrom profundo/Bronze
           ),

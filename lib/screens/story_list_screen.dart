@@ -62,6 +62,8 @@ class _StoryListScreenState extends State<StoryListScreen> {
       (story) => story.storyId == _dailyStoryId,
     );
 
+    var width = MediaQuery.of(context).size.width;
+
     List<String> initialTitleSepareted = t.initialTitle.split(' ');
     final String firstInitialTitle = initialTitleSepareted[0];
     String secondInitialTitle = initialTitleSepareted.length > 1
@@ -296,7 +298,10 @@ class _StoryListScreenState extends State<StoryListScreen> {
                           color: const Color.fromARGB(255, 205, 156, 9),
                         ),
                         SizedBox(width: 8),
-                        TitleCartoon(text: t.choiceHistory, fontSize: 18),
+                        TitleCartoon(
+                          text: t.choiceHistory,
+                          fontSize: width >= 600 ? 20 : 14,
+                        ),
                       ],
                     ),
                   ),
