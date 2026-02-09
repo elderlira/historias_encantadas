@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import '../l10n/app_localizations.dart';
 import '../stories/story_registry.dart';
+import '../widgets/implementText.dart';
 import 'story_viewer_screen.dart';
 
 class StoryListScreen extends StatefulWidget {
@@ -148,16 +149,23 @@ class _StoryListScreenState extends State<StoryListScreen> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      TitleCartoon(text: firstInitialTitle, fontSize: 22),
+                      TitleCartoon(
+                        text: firstInitialTitle,
+                        fontSize: width >= 600 ? 34 : 22,
+                      ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(width: 90),
-                      TitleCartoon(text: secondInitialTitle, fontSize: 24),
+                      TitleCartoon(
+                        text: secondInitialTitle,
+                        fontSize: width >= 600 ? 34 : 24,
+                      ),
                       SizedBox(width: 40),
                       IconButton(
+                        iconSize: width >= 600 ? 36 : 16,
                         icon: const Icon(Icons.settings, color: Colors.white),
                         onPressed: () {
                           Navigator.push(
@@ -187,14 +195,12 @@ class _StoryListScreenState extends State<StoryListScreen> {
                       top: 8,
                       bottom: 0,
                     ),
-                    child: Text(
+                    child: simpleImplementText(
+                      width,
                       t.subtitleHistory,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      22,
+                      16,
+                      Colors.white,
                     ),
                   ),
 
@@ -243,27 +249,26 @@ class _StoryListScreenState extends State<StoryListScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
+                                  simpleImplementText(
+                                    width,
                                     t.historyDay,
-                                    style: const TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
+                                    26,
+                                    16,
+                                    Colors.white,
                                   ),
                                   const SizedBox(height: 4),
-                                  Text(
+                                  simpleImplementText(
+                                    width,
                                     dailyStory.title,
-                                    style: const TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w600,
-                                      color: Colors.white,
-                                    ),
+                                    20,
+                                    15,
+                                    Colors.white,
                                   ),
                                   Text(
                                     '${dailyStory.pages.length} ${t.page}',
-                                    style: const TextStyle(
-                                      fontSize: 13,
+                                    style: TextStyle(
+                                      fontSize: width >= 600 ? 18 : 13,
+                                      fontWeight: FontWeight.bold,
                                       color: Colors.white70,
                                     ),
                                   ),
@@ -310,7 +315,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
 
                   /// CARROSSEL
                   Container(
-                    height: 280,
+                    height: width >= 600 ? 500 : 280,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24),
@@ -391,17 +396,24 @@ class _StoryListScreenState extends State<StoryListScreen> {
                                       padding: const EdgeInsets.symmetric(
                                         horizontal: 10,
                                       ),
-                                      child: Text(
+                                      child: simpleImplementText(
+                                        width,
                                         story.title,
-                                        textAlign: TextAlign.center,
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: const TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.bold,
-                                          color: Color(0xFF3A2E2E),
-                                        ),
+                                        20,
+                                        12,
+                                        Color(0xFF6D5C5C),
                                       ),
+                                      // Text(
+                                      //   story.title,
+                                      //   textAlign: TextAlign.center,
+                                      //   maxLines: 2,
+                                      //   overflow: TextOverflow.ellipsis,
+                                      //   style: const TextStyle(
+                                      //     fontSize: 12,
+                                      //     fontWeight: FontWeight.bold,
+                                      //     color: Color(0xFF3A2E2E),
+                                      //   ),
+                                      // ),
                                     ),
 
                                     const SizedBox(height: 4),
@@ -413,8 +425,8 @@ class _StoryListScreenState extends State<StoryListScreen> {
                                       ),
                                       child: Text(
                                         '${story.pages.length} ${t.page}',
-                                        style: const TextStyle(
-                                          fontSize: 13,
+                                        style: TextStyle(
+                                          fontSize: width >= 600 ? 18 : 13,
                                           color: Color(0xFF6D5C5C),
                                         ),
                                       ),
