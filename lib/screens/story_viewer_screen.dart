@@ -313,9 +313,14 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
-        title: TitleCartoon(text: widget.storyConfig.title, fontSize: 16),
+        title: TitleCartoon(
+          text: widget.storyConfig.title,
+          fontSize: width >= 600 ? 30 : 16,
+        ),
         // Text(
         //   widget.storyConfig.title,
         //   style: const TextStyle(

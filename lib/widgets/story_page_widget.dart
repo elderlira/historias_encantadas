@@ -20,6 +20,8 @@ class StoryPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       padding: const EdgeInsets.all(24.0),
@@ -121,8 +123,8 @@ class StoryPageWidget extends StatelessWidget {
               child: Text(
                 page.text,
                 textAlign: TextAlign.justify,
-                style: const TextStyle(
-                  fontSize: 18,
+                style: TextStyle(
+                  fontSize: width >= 600 ? 36 : 18,
                   height: 1.5,
                   color: Colors.black87,
                 ),
