@@ -1,12 +1,14 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
 import '../constants/app_constants.dart';
 
-class SubscriptionService {
+class SubscriptionService extends ChangeNotifier {
   final InAppPurchase _iap = InAppPurchase.instance;
   late StreamSubscription<List<PurchaseDetails>> _subscription;
+  bool isProcessing = false;
 
   bool isSubscribed = false;
   ProductDetails? productDetails;
@@ -19,6 +21,7 @@ class SubscriptionService {
 
     await _loadProducts();
     _listenToPurchases();
+    await _iap.restorePurchases();
   }
 
   Future<void> _loadProducts() async {
@@ -44,9 +47,21 @@ class SubscriptionService {
   }
 
   Future<void> _handlePurchase(PurchaseDetails purchase) async {
-    if (purchase.status == PurchaseStatus.purchased ||
+    if (purchase.status == PurchaseStatus.pending) {
+      isProcessing = true;
+      notifyListeners();
+    } else if (purchase.status == PurchaseStatus.purchased ||
         purchase.status == PurchaseStatus.restored) {
-      isSubscribed = true;
+      if (purchase.productID == kSubscriptionId) {
+        isSubscribed = true;
+      }
+
+      isProcessing = false;
+      notifyListeners();
+    } else if (purchase.status == PurchaseStatus.error) {
+      isProcessing = false;
+      notifyListeners();
+      print('Erro na compra: ${purchase.error}');
     }
 
     if (purchase.pendingCompletePurchase) {
@@ -64,7 +79,9 @@ class SubscriptionService {
     await _iap.buyNonConsumable(purchaseParam: purchaseParam);
   }
 
+  @override
   void dispose() {
     _subscription.cancel();
+    super.dispose();
   }
 }

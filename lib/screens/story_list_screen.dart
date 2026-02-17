@@ -88,9 +88,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
     }
 
     void storyTap(StoryConfig story) {
-      // openStory(story);
-      print(story);
-      if (subscription.isSubscribed) {
+      if (subscription.isSubscribed || story.storyId == 'redHat') {
         openStory(story);
       } else {
         subscriptionFalse();

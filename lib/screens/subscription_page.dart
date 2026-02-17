@@ -20,6 +20,18 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
   void initState() {
     super.initState();
     _init();
+
+    _service.addListener(() {
+      if (mounted) {
+        setState(() {});
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _service.dispose();
+    super.dispose();
   }
 
   Future<void> _init() async {
@@ -83,9 +95,21 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                     ),
                     const SizedBox(height: 24),
                     ElevatedButton(
-                      onPressed: _service.buySubscription,
-                      child: const Text('Assinar agora'),
+                      onPressed: _service.isProcessing
+                          ? null
+                          : _service.buySubscription,
+                      child: _service.isProcessing
+                          ? const SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: Colors.white,
+                              ),
+                            )
+                          : const Text('Assinar agora'),
                     ),
+
                     TextButton(
                       onPressed: () {
                         InAppPurchase.instance.restorePurchases();
