@@ -319,7 +319,7 @@ class _StoryViewerScreenState extends State<StoryViewerScreen> {
       appBar: AppBar(
         title: TitleCartoon(
           text: widget.storyConfig.title,
-          fontSize: width >= 600 ? 30 : 16,
+          fontSize: width >= 600 ? 30 : 12,
         ),
         // Text(
         //   widget.storyConfig.title,

@@ -88,6 +88,8 @@ class _StoryListScreenState extends State<StoryListScreen> {
     }
 
     void storyTap(StoryConfig story) {
+      // openStory(story);
+      print(story);
       if (subscription.isSubscribed) {
         openStory(story);
       } else {
@@ -151,7 +153,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
                     children: [
                       TitleCartoon(
                         text: firstInitialTitle,
-                        fontSize: width >= 600 ? 34 : 22,
+                        fontSize: width >= 600 ? 34 : 18,
                       ),
                     ],
                   ),
@@ -161,7 +163,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
                       SizedBox(width: 90),
                       TitleCartoon(
                         text: secondInitialTitle,
-                        fontSize: width >= 600 ? 34 : 24,
+                        fontSize: width >= 600 ? 34 : 20,
                       ),
                       SizedBox(width: 40),
                       IconButton(
