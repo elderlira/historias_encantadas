@@ -143,7 +143,7 @@ class ThreeLittlePigsData implements StoryData {
     }),
     LocalizedText({
       'pt':
-          'Agora, os três irmãos estavam juntos na casa de tijolos de Prático. "Pode vir, seu lobo bobo! ',
+          'Agora, os três irmãos estavam juntos na casa de tijolos de Prático. "Pode vir, seu lobo bobo!" ',
       'en': """
           Now the three brothers were together in Practical's brick house. "Come on, you silly wolf!"
           """,
@@ -178,7 +178,7 @@ class ThreeLittlePigsData implements StoryData {
     }),
     LocalizedText({
       'pt':
-          'O Lobo Mau teve uma ideia: iria esperar chegar a noite e subiria na chaminé! Mas o Porquinho Prático estava esperando por ele e colocou um caldeirao de água quente próxima a chaminé',
+          'O Lobo Mau teve uma ideia: iria esperar chegar a noite e subiria na chaminé! Mas o Porquinho Prático estava esperando por ele e colocou um caldeirão de água quente próxima a chaminé',
       'en':
           "The Big Bad Wolf had an idea: he would wait until nightfall and climb up the chimney! But the Practical Pig was waiting for him and had placed a cauldron of hot water near the chimney. ",
       'es':
