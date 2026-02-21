@@ -88,11 +88,12 @@ class _StoryListScreenState extends State<StoryListScreen> {
     }
 
     void storyTap(StoryConfig story) {
-      if (subscription.isSubscribed || story.storyId == 'redHat') {
-        openStory(story);
-      } else {
-        subscriptionFalse();
-      }
+      openStory(story);
+      // if (subscription.isSubscribed || story.storyId == 'redHat') {
+      //   openStory(story);
+      // } else {
+      //   subscriptionFalse();
+      // }
     }
 
     // String verifySecondInitialTitle(String text) {
