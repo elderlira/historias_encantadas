@@ -27,14 +27,16 @@ dependencies:
   country_icons: ^3.0.0
   flutter_svg: ^2.2.3
   flutter_launcher_icons: ^0.14.4
-  google_fonts: ^7.1.0
+  google_fonts: ^8.1.0
   in_app_purchase: ^3.2.3
+  equatable: ^2.1.0
+  shared_preferences: ^2.5.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 
 flutter:
