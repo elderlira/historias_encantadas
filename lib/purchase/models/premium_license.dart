@@ -32,6 +32,15 @@ class PremiumLicense extends Equatable {
     );
   }
 
+  factory PremiumLicense.test() {
+    return PremiumLicense(
+      isPremium: true,
+      productId: 'historias_encantadas_premium',
+      purchaseDate: DateTime(2026, 7, 11),
+      restored: true,
+    );
+  }
+
   bool get isFree => !isPremium;
 
   bool get isRestored => restored;

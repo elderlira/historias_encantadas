@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:historias_encantadas/providers/subscription_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'database/app_database.dart';
 import 'l10n/app_localizations.dart';
 import 'providers/locale_provider.dart';
+import 'purchase/providers/purchase_provider.dart';
 import 'screens/language_selection_screen.dart';
 import 'screens/story_list_screen.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final savedLang = await AppDatabase.getLanguage();
+
   final localeProvider = LocaleProvider();
-  final subscriptionProvider = SubscriptionProvider();
-  await subscriptionProvider.init();
+
+  final purchaseProvider = PurchaseProvider();
+
+  await purchaseProvider.initialize();
 
   if (savedLang != null) {
     localeProvider.setLocale(savedLang);
@@ -24,9 +27,11 @@ void main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => localeProvider),
-        ChangeNotifierProvider(create: (_) => subscriptionProvider),
+        ChangeNotifierProvider.value(value: localeProvider),
+
+        ChangeNotifierProvider.value(value: purchaseProvider),
       ],
+
       child: MyApp(isFirstAccess: savedLang == null),
     ),
   );
@@ -43,14 +48,21 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       locale: locale,
+
       supportedLocales: AppLocalizations.supportedLocales,
+
       localizationsDelegates: const [
         AppLocalizations.delegate,
+
         GlobalMaterialLocalizations.delegate,
+
         GlobalWidgetsLocalizations.delegate,
+
         GlobalCupertinoLocalizations.delegate,
       ],
+
       home: isFirstAccess
           ? const LanguageSelectionScreen()
           : const StoryListScreen(),

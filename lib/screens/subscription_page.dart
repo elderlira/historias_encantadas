@@ -1,107 +1,104 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:historias_encantadas/purchase/providers/purchase_provider.dart';
+import 'package:provider/provider.dart';
 
-import '../services/subscription_service.dart';
-
-class SubscriptionPage extends StatefulWidget {
+class SubscriptionPage extends StatelessWidget {
   const SubscriptionPage({super.key});
 
   @override
-  State<SubscriptionPage> createState() => _SubscriptionPageState();
-}
-
-class _SubscriptionPageState extends State<SubscriptionPage> {
-  final SubscriptionService _service = SubscriptionService();
-  bool loading = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _init();
-
-    _service.addListener(() {
-      if (mounted) {
-        setState(() {});
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _service.dispose();
-    super.dispose();
-  }
-
-  Future<void> _init() async {
-    await _service.init();
-    setState(() => loading = false);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (loading) {
+    final purchase = context.watch<PurchaseProvider>();
+
+    if (purchase.isLoading) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
     return Scaffold(
       backgroundColor: Colors.transparent,
+
       appBar: AppBar(
         title: const Text(
-          'Assinatura',
+          'Premium',
           style: TextStyle(color: Colors.white, fontSize: 24),
         ),
+
         backgroundColor: const Color.fromARGB(255, 5, 87, 125),
       ),
+
       body: Container(
         decoration: BoxDecoration(
           gradient: SweepGradient(
             startAngle: 0,
+
             endAngle: math.pi * 2,
-            colors: <Color>[
+
+            colors: const [
               Colors.blue,
               Colors.green,
               Colors.yellow,
               Colors.red,
-              Colors
-                  .blue, // Looping back to the start color makes a smooth transition
+              Colors.blue,
             ],
           ),
         ),
+
         child: Center(
-          child: _service.isSubscribed
+          child: purchase.isPremium
               ? const Text(
-                  '🎉 Assinatura ativa!\nAproveite todas as histórias.',
+                  '🎉 Premium ativo!\n'
+                  'Aproveite todas as histórias.',
+
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 18),
+
+                  style: TextStyle(
+                    fontSize: 20,
+
+                    color: Colors.white,
+
+                    fontWeight: FontWeight.bold,
+                  ),
                 )
               : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+
                   children: [
                     Text(
-                      _service.productDetails?.title ?? 'Plano Mensal',
+                      purchase.premiumProduct.title,
+
                       style: const TextStyle(
                         fontSize: 24,
+
                         color: Colors.white,
+
                         fontWeight: FontWeight.bold,
+
                         letterSpacing: 2,
                       ),
                     ),
+
                     const SizedBox(height: 8),
+
                     Text(
-                      _service.productDetails?.price ?? '',
-                      style: const TextStyle(fontSize: 18),
+                      purchase.premiumProduct.price,
+
+                      style: const TextStyle(fontSize: 18, color: Colors.white),
                     ),
+
                     const SizedBox(height: 24),
+
                     ElevatedButton(
-                      onPressed: _service.isProcessing
+                      onPressed: purchase.isLoading
                           ? null
-                          : _service.buySubscription,
-                      child: _service.isProcessing
+                          : purchase.buyPremium,
+
+                      child: purchase.isLoading
                           ? const SizedBox(
                               height: 20,
+
                               width: 20,
+
                               child: CircularProgressIndicator(
                                 strokeWidth: 2,
                                 color: Colors.white,
@@ -111,11 +108,27 @@ class _SubscriptionPageState extends State<SubscriptionPage> {
                     ),
 
                     TextButton(
-                      onPressed: () {
-                        InAppPurchase.instance.restorePurchases();
-                      },
-                      child: const Text('Restaurar assinatura'),
+                      onPressed: purchase.restorePurchases,
+
+                      child: const Text(
+                        'Restaurar compra',
+
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
+
+                    if (purchase.errorMessage != null)
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+
+                        child: Text(
+                          purchase.errorMessage!,
+
+                          textAlign: TextAlign.center,
+
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                      ),
                   ],
                 ),
         ),

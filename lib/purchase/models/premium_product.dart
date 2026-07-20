@@ -1,4 +1,6 @@
-class PremiumProduct {
+import 'package:equatable/equatable.dart';
+
+class PremiumProduct extends Equatable {
   final String id;
   final String title;
   final String description;
@@ -13,7 +15,16 @@ class PremiumProduct {
     required this.available,
   });
 
-  bool get isAvailable => available;
+  factory PremiumProduct.unavailable() {
+    return const PremiumProduct(
+      id: '',
+      title: '',
+      description: '',
+      price: '',
+      available: false,
+    );
+  }
 
-  bool get isUnavailable => !available;
+  @override
+  List<Object?> get props => [id, title, description, price, available];
 }

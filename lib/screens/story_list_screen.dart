@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:historias_encantadas/models/story_config.dart';
-import 'package:historias_encantadas/providers/subscription_provider.dart';
+import 'package:historias_encantadas/purchase/providers/purchase_provider.dart';
 import 'package:historias_encantadas/screens/language_selection_screen.dart';
 import 'package:historias_encantadas/screens/subscription_page.dart';
 import 'package:historias_encantadas/widgets/title_cartoon.dart';
@@ -57,7 +57,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
   Widget build(BuildContext context) {
     final stories = StoryRegistry.getAllStories(context);
     final t = AppLocalizations.of(context)!;
-    final subscription = context.watch<SubscriptionProvider>();
+    final purchase = context.watch<PurchaseProvider>();
 
     final dailyStory = stories.firstWhere(
       (story) => story.storyId == _dailyStoryId,
@@ -80,7 +80,7 @@ class _StoryListScreenState extends State<StoryListScreen> {
       );
     }
 
-    void subscriptionFalse() {
+    void openPremiumPage() {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (_) => const SubscriptionPage()),
@@ -88,12 +88,14 @@ class _StoryListScreenState extends State<StoryListScreen> {
     }
 
     void storyTap(StoryConfig story) {
-      openStory(story);
-      // if (subscription.isSubscribed || story.storyId == 'redHat') {
-      //   openStory(story);
-      // } else {
-      //   subscriptionFalse();
-      // }
+      final isFreeStory = story.storyId == 'redHat';
+
+      if (purchase.isPremium || isFreeStory) {
+        openStory(story);
+        return;
+      }
+
+      openPremiumPage();
     }
 
     // String verifySecondInitialTitle(String text) {
