@@ -1,5 +1,3 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:historias_encantadas/purchase/providers/purchase_provider.dart';
 import 'package:provider/provider.dart';
@@ -28,22 +26,29 @@ class SubscriptionPage extends StatelessWidget {
       ),
 
       body: Container(
-        decoration: BoxDecoration(
-          gradient: SweepGradient(
-            startAngle: 0,
-
-            endAngle: math.pi * 2,
-
-            colors: const [
-              Colors.blue,
-              Colors.green,
-              Colors.yellow,
-              Colors.red,
-              Colors.blue,
-            ],
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/purchase_screen.png'),
+            fit: BoxFit.cover,
           ),
         ),
+        // decoration: BoxDecoration(
+        //   gradient: SweepGradient(
+        //     startAngle: 0,
 
+        //     endAngle: math.pi * 2,
+
+        //     colors: const [
+        //       Colors.blue,
+        //       Colors.green,
+        //       Colors.yellow,
+        //       Colors.red,
+        //       Colors.blue,
+        //     ],
+        //   ),
+        // ),
         child: Center(
           child: purchase.isPremium
               ? const Text(
@@ -104,14 +109,14 @@ class SubscriptionPage extends StatelessWidget {
                                 color: Colors.white,
                               ),
                             )
-                          : const Text('Assinar agora'),
+                          : const Text('Desbloquear Premium'),
                     ),
 
                     TextButton(
                       onPressed: purchase.restorePurchases,
 
                       child: const Text(
-                        'Restaurar compra',
+                        'Restaurar Premium',
 
                         style: TextStyle(color: Colors.white),
                       ),
